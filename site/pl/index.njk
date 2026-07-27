@@ -1,0 +1,20 @@
+---
+layout: base.njk
+lang: pl
+title: Maciej Czerpiński - Tech Lead
+permalink: /pl/index.html
+---
+<section class="hero">
+  <h1>{{ copy.pl.hero.greeting }}</h1>
+  {% for line in copy.pl.hero.lines %}
+  <p>{{ line }}</p>
+  {% endfor %}
+  <p class="hero__talents">{{ copy.pl.hero.talents }}</p>
+</section>
+
+<section id="about">
+  <h2>{{ copy.pl.about.heading }}</h2>
+  {% for p in copy.pl.about.paragraphs %}
+  <p>{{ p }}</p>
+  {% endfor %}
+</section>

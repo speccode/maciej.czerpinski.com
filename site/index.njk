@@ -1,5 +1,19 @@
 ---
 layout: base.njk
 lang: en
+title: Maciej Czerpiński - Tech Lead
 ---
-Placeholder - replaced in Task 4.
+<section class="hero">
+  <h1>{{ copy.en.hero.greeting }}</h1>
+  {% for line in copy.en.hero.lines %}
+  <p>{{ line }}</p>
+  {% endfor %}
+  <p class="hero__talents">{{ copy.en.hero.talents }}</p>
+</section>
+
+<section id="about">
+  <h2>{{ copy.en.about.heading }}</h2>
+  {% for p in copy.en.about.paragraphs %}
+  <p>{{ p }}</p>
+  {% endfor %}
+</section>
