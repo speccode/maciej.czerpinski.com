@@ -1,7 +1,7 @@
 # Archiwum: stara strona Gatsby (2020-2026)
 
 Zarchiwizowane przed migracją na 11ty (statyczny HTML), 2026-07-28.
-Spec migracji: `../../docs/superpowers/specs/2026-07-28-static-site-migration-design.md`
+Spec migracji: `../../project-docs/superpowers/specs/2026-07-28-static-site-migration-design.md`
 
 Zawartość:
 - `src/`, `content/`, `static/`, `package.json`, `gatsby-config.js`, `yarn.lock` - źródła Gatsby (theme `@lekoarts/gatsby-theme-minimal-blog`)
