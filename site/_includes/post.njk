@@ -1,0 +1,8 @@
+---
+layout: base.njk
+---
+<article>
+  <h1>{{ title }}</h1>
+  <p class="blog-list__date">{{ date | readableDate }}</p>
+  {{ content | safe }}
+</article>
