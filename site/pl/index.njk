@@ -18,3 +18,31 @@ permalink: /pl/index.html
   <p>{{ p }}</p>
   {% endfor %}
 </section>
+
+<section id="training">
+  <h2>{{ copy.pl.training.heading }}</h2>
+  {% for p in copy.pl.training.paragraphs %}
+  <p>{{ p }}</p>
+  {% endfor %}
+  <a class="cta" href="{{ copy.pl.training.ctaHref }}">{{ copy.pl.training.ctaLabel }} &rarr;</a>
+
+  <!-- TODO: PLACEHOLDER - replace testimonials below with real ones before publishing -->
+  {% for t in testimonials.pl %}
+  <div class="testimonial">
+    <p>&bdquo;{{ t.quote }}&rdquo;</p>
+    <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
+  </div>
+  {% endfor %}
+</section>
+
+<section id="blog-teaser">
+  <h2>{{ copy.pl.blogTeaser.heading }}</h2>
+  {% for post in collections.post %}
+  {% if loop.index <= 3 %}
+  <div class="blog-list__item">
+    <a href="{{ post.url }}">{{ post.data.title }}</a>
+  </div>
+  {% endif %}
+  {% endfor %}
+  <a class="cta" href="/blog/">{{ copy.pl.blogTeaser.viewAllLabel }} &rarr;</a>
+</section>
