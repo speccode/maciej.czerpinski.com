@@ -4,7 +4,19 @@
   --bg: #fff;
   --accent: #6b46c1;
   --border: #e2e8f0;
+  --heading: #000;
   --max-width: 42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #cbd5e0;
+    --muted: #8896ab;
+    --bg: #1a202c;
+    --accent: #9f7aea;
+    --border: #2d3748;
+    --heading: #fff;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -59,7 +71,7 @@ section {
 }
 
 h1, h2, h3 {
-  color: #000;
+  color: var(--heading);
   line-height: 1.25;
 }
 
