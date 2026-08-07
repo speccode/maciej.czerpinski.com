@@ -17,6 +17,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "site/CNAME": "CNAME" });
   eleventyConfig.addPassthroughCopy({ "site/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "site/llms.txt": "llms.txt" });
+  eleventyConfig.addPassthroughCopy({ "site/sw.js": "sw.js" });
   eleventyConfig.addPassthroughCopy({
     "site/blog/posts/remote-event-storming-assets": "blog/remote-event-storming",
   });
