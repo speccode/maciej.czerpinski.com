@@ -1,0 +1,24 @@
+# Maciej Czerpiński
+
+> Tech Lead specializing in AI-assisted software development, Spec-Driven Development, and engineering team training. 15+ years in PHP/Laravel and distributed systems.
+
+Maciej leads engineering teams through legacy systems without documentation, business pressure, and AI tooling that hasn't earned its hype yet. He takes on projects everyone agrees matter and nobody starts, and ships them end-to-end. He trains teams in Event Storming, Domain-Driven Design, and Clean Code - taught at Sages and Altkom, now booked directly.
+
+He also runs speccode.com, an AI-driven consulting practice built on Spec-Driven Development: discovery (Event Storming, Domain Storytelling), BDD specification, and AI-ready documentation, for CTOs and VPs of Engineering at companies with legacy systems and AI tooling that hasn't delivered.
+
+## Pages
+
+- [About](https://maciej.czerpinski.com/about/): background, working style, what kind of problems he takes on
+- [Training](https://maciej.czerpinski.com/training/): Event Storming, Domain-Driven Design, and Clean Code workshops, with participant testimonials
+- [Blog](https://maciej.czerpinski.com/blog/): articles on Event Storming, Domain-Driven Design, and AI-assisted development
+- [Contact](https://maciej.czerpinski.com/contact/): book a call directly
+
+## Elsewhere
+
+- [speccode.com](https://speccode.com): AI-driven Spec-Driven Development consulting
+- [LinkedIn](https://www.linkedin.com/in/maciejczerpinski/)
+- [GitHub](https://github.com/speccode)
+
+## Polish
+
+This site also ships a full Polish translation at [/pl/](https://maciej.czerpinski.com/pl/), mirroring the same pages (About, Training, Contact). The blog is English-only.

@@ -1,7 +1,22 @@
+const markdownIt = require("markdown-it");
+
 module.exports = function (eleventyConfig) {
+  const md = markdownIt({ html: true });
+  const defaultImageRule = md.renderer.rules.image;
+  md.renderer.rules.image = function (tokens, idx, options, env, self) {
+    const token = tokens[idx];
+    token.attrSet("loading", "lazy");
+    token.attrSet("decoding", "async");
+    return defaultImageRule(tokens, idx, options, env, self);
+  };
+  eleventyConfig.setLibrary("md", md);
+
   eleventyConfig.addPassthroughCopy("site/css");
+  eleventyConfig.addPassthroughCopy("site/img");
+  eleventyConfig.addPassthroughCopy("site/js");
   eleventyConfig.addPassthroughCopy({ "site/CNAME": "CNAME" });
   eleventyConfig.addPassthroughCopy({ "site/robots.txt": "robots.txt" });
+  eleventyConfig.addPassthroughCopy({ "site/llms.txt": "llms.txt" });
   eleventyConfig.addPassthroughCopy({
     "site/blog/posts/remote-event-storming-assets": "blog/remote-event-storming",
   });

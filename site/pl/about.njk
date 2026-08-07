@@ -1,0 +1,16 @@
+---
+layout: base.njk
+lang: pl
+title: O mnie - Maciej Czerpiński
+description: O Maciej Czerpiński - Tech Lead i trener, który prowadzi zespoły inżynierskie przez systemy legacy, presję biznesową i niesprawdzone narzędzia AI, i dowozi projekty odkładane latami.
+altLangHref: /about/
+ogType: profile
+permalink: /pl/about/index.html
+---
+<section id="about">
+  <h1>{{ copy.pl.about.heading }}</h1>
+  {% for p in copy.pl.about.paragraphs %}
+  <p>{{ p }}</p>
+  {% endfor %}
+  <a class="cta cta--button" href="{{ copy.pl.about.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.about.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</section>

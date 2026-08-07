@@ -5,4 +5,9 @@ layout: base.njk
   <h1>{{ title }}</h1>
   <p class="blog-list__date">{{ date | readableDate }}</p>
   {{ content | safe }}
+  <p>
+    <a class="cta" href="/blog/">{{ copy[lang].postFooter.backLabel }}</a>
+    &nbsp;&middot;&nbsp;
+    <a class="cta" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ copy[lang].postFooter.ctaSubject }}">{{ copy[lang].postFooter.ctaLabel }}</a>
+  </p>
 </article>

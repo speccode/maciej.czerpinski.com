@@ -1,0 +1,16 @@
+---
+layout: base.njk
+lang: en
+title: About - Maciej Czerpiński
+description: About Maciej Czerpiński, a Tech Lead and trainer who leads engineering teams through legacy systems, business pressure, and unproven AI tooling - and ships the projects everyone postpones.
+altLangHref: /pl/about/
+ogType: profile
+permalink: /about/index.html
+---
+<section id="about">
+  <h1>{{ copy.en.about.heading }}</h1>
+  {% for p in copy.en.about.paragraphs %}
+  <p>{{ p }}</p>
+  {% endfor %}
+  <a class="cta cta--button" href="{{ copy.en.about.ctaHref }}" target="_blank" rel="noopener">{{ copy.en.about.ctaLabel }} <span class="visually-hidden">{{ copy.en.common.newTabHint }}</span></a>
+</section>

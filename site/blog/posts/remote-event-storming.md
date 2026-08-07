@@ -1,6 +1,9 @@
 ---
 title: Remote Event Storming
 date: 2020-03-20
+description: A practical guide to running remote Event Storming workshops using Miro - preparation, facilitation tips, and lessons from real distributed teams.
+ogType: article
+publishedTime: "2020-03-20T00:00:00Z"
 tags:
   - post
   - Event Storming

@@ -1,37 +1,48 @@
 ---
 layout: base.njk
 lang: en
-title: Maciej Czerpiński - Tech Lead
+title: Maciej Czerpiński - Tech Lead & Trainer
+description: Maciej Czerpiński is a Tech Lead specializing in AI-assisted development, Spec-Driven Development, and legacy system modernization. 15+ years in PHP/Laravel and distributed systems.
+altLangHref: /pl/
+permalink: /index.html
 ---
 <section class="hero">
-  <h1>{{ copy.en.hero.greeting }}</h1>
+  <div class="hero__identity">
+    <img class="hero__photo" src="/img/maciej.jpg" alt="Maciej Czerpiński" width="72" height="72">
+    <h1>{{ copy.en.hero.greeting }}</h1>
+  </div>
+  <p class="hero__tagline">{{ copy.en.hero.tagline }}</p>
   {% for line in copy.en.hero.lines %}
   <p>{{ line }}</p>
   {% endfor %}
   <p class="hero__talents">{{ copy.en.hero.talents }}</p>
+  <a class="cta cta--button" href="{{ copy.en.hero.ctaHref }}" target="_blank" rel="noopener">{{ copy.en.hero.ctaLabel }} <span class="visually-hidden">{{ copy.en.common.newTabHint }}</span></a>
 </section>
 
-<section id="about">
-  <h2>{{ copy.en.about.heading }}</h2>
-  {% for p in copy.en.about.paragraphs %}
-  <p>{{ p }}</p>
-  {% endfor %}
+<section class="teaser-grid">
+  <div class="teaser">
+    <span class="teaser__eyebrow">{{ copy.en.homeTeaser.aboutEyebrow }}</span>
+    <p>{{ copy.en.homeTeaser.aboutSummary }}</p>
+    <a class="cta" href="{{ copy.en.homeTeaser.aboutCtaHref }}">{{ copy.en.homeTeaser.aboutCtaLabel }}</a>
+  </div>
+  <div class="teaser">
+    <span class="teaser__eyebrow">{{ copy.en.homeTeaser.trainingEyebrow }}</span>
+    <p>{{ copy.en.homeTeaser.trainingSummary }}</p>
+    <a class="cta" href="{{ copy.en.homeTeaser.trainingCtaHref }}">{{ copy.en.homeTeaser.trainingCtaLabel }}</a>
+  </div>
 </section>
 
-<section id="training">
-  <h2>{{ copy.en.training.heading }}</h2>
-  {% for p in copy.en.training.paragraphs %}
-  <p>{{ p }}</p>
-  {% endfor %}
-  <a class="cta" href="{{ copy.en.training.ctaHref }}">{{ copy.en.training.ctaLabel }} &rarr;</a>
-
-  <!-- TODO: PLACEHOLDER - replace testimonials below with real ones before publishing -->
+<section>
+  <h2>{{ copy.en.homeTeaser.testimonialsHeading }}</h2>
   {% for t in testimonials.en %}
+  {% if loop.index <= 2 %}
   <div class="testimonial">
-    <p>&ldquo;{{ t.quote }}&rdquo;</p>
+    <p><span class="pull-quote__mark">&ldquo;</span>{{ t.quote }}<span class="pull-quote__mark">&rdquo;</span></p>
     <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
   </div>
+  {% endif %}
   {% endfor %}
+  <a class="cta" href="{{ copy.en.homeTeaser.testimonialsCtaHref }}">{{ copy.en.homeTeaser.testimonialsCtaLabel }} ({{ testimonials.en.length }})</a>
 </section>
 
 <section id="blog-teaser">
@@ -43,5 +54,22 @@ title: Maciej Czerpiński - Tech Lead
   </div>
   {% endif %}
   {% endfor %}
-  <a class="cta" href="/blog/">{{ copy.en.blogTeaser.viewAllLabel }} &rarr;</a>
+  <a class="cta" href="/blog/">{{ copy.en.blogTeaser.viewAllLabel }}</a>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Maciej Czerpiński",
+  "jobTitle": "Tech Lead & Trainer",
+  "url": "https://maciej.czerpinski.com/",
+  "image": "https://maciej.czerpinski.com/img/maciej.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/in/maciejczerpinski/",
+    "https://github.com/speccode",
+    "https://speccode.com"
+  ],
+  "knowsAbout": ["AI-assisted software development", "Spec-Driven Development", "Event Storming", "Domain-Driven Design", "Clean Code", "PHP", "Laravel"]
+}
+</script>

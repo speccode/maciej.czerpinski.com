@@ -1,0 +1,27 @@
+---
+layout: base.njk
+lang: en
+title: Contact - Maciej Czerpiński
+description: Book a free discovery call with Maciej Czerpiński - Tech Lead for AI-assisted development, Spec-Driven Development consulting, and engineering training.
+altLangHref: /pl/contact/
+permalink: /contact/index.html
+---
+{% from "icons.njk" import icon %}
+<section id="contact">
+  <h1>{{ copy.en.contact.heading }}</h1>
+  <p>{{ copy.en.contact.intro }}</p>
+  <a class="cta cta--button" href="{{ copy.en.contact.ctaHref }}" target="_blank" rel="noopener">{{ copy.en.contact.ctaLabel }} <span class="visually-hidden">{{ copy.en.common.newTabHint }}</span></a>
+</section>
+
+<section>
+  <h2>{{ copy.en.contact.linksHeading }}</h2>
+  <ul class="contact-links">
+    {% for link in copy.en.contact.links %}
+    {% if link.type == "email" %}
+    <li><a href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ link.subject }}">{{ icon(link.icon) }}{{ link.label }}</a></li>
+    {% else %}
+    <li><a href="{{ link.href }}">{{ icon(link.icon) }}{{ link.label }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</section>

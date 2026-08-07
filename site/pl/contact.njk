@@ -1,0 +1,27 @@
+---
+layout: base.njk
+lang: pl
+title: Kontakt - Maciej Czerpiński
+description: Umów darmową rozmowę z Maciej Czerpiński - Tech Lead od rozwoju oprogramowania wspieranego przez AI, konsultingu Spec-Driven Development i szkoleń inżynierskich.
+altLangHref: /contact/
+permalink: /pl/contact/index.html
+---
+{% from "icons.njk" import icon %}
+<section id="contact">
+  <h1>{{ copy.pl.contact.heading }}</h1>
+  <p>{{ copy.pl.contact.intro }}</p>
+  <a class="cta cta--button" href="{{ copy.pl.contact.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.contact.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</section>
+
+<section>
+  <h2>{{ copy.pl.contact.linksHeading }}</h2>
+  <ul class="contact-links">
+    {% for link in copy.pl.contact.links %}
+    {% if link.type == "email" %}
+    <li><a href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ link.subject }}">{{ icon(link.icon) }}{{ link.label }}</a></li>
+    {% else %}
+    <li><a href="{{ link.href }}">{{ icon(link.icon) }}{{ link.label }}</a></li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</section>

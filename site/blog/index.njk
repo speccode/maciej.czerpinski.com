@@ -2,13 +2,17 @@
 layout: base.njk
 lang: en
 title: Blog - Maciej Czerpiński
+description: Articles by Maciej Czerpiński on Event Storming, Domain-Driven Design, and AI-assisted software development.
+permalink: /blog/index.html
 ---
 <section>
-  <h1>Blog</h1>
+  <h1>{{ copy.en.blogIndex.heading }}</h1>
   {% for post in collections.post %}
   <div class="blog-list__item">
     <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
     <p class="blog-list__date">{{ post.date | readableDate }}</p>
   </div>
+  {% else %}
+  <p class="blog-empty">{{ copy.en.blogIndex.empty }}</p>
   {% endfor %}
 </section>

@@ -4,31 +4,82 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title or "Maciej Czerpiński" }}</title>
-  <meta name="description" content="Tech Lead. AI-assisted development, Spec-Driven Development, Event Storming, DDD, Clean Code training.">
+  <meta name="description" content="{{ description or 'Tech Lead & Trainer. AI-assisted development, Spec-Driven Development, Event Storming, DDD, Clean Code training.' }}">
+  <meta name="author" content="Maciej Czerpiński">
+  <link rel="canonical" href="https://maciej.czerpinski.com{{ page.url }}">
+  {% if altLangHref %}
+  <link rel="alternate" hreflang="{{ 'pl' if lang == 'en' else 'en' }}" href="https://maciej.czerpinski.com{{ altLangHref }}">
+  <link rel="alternate" hreflang="x-default" href="https://maciej.czerpinski.com{{ page.url if lang == 'en' else altLangHref }}">
+  {% endif %}
+
+  <meta property="og:site_name" content="Maciej Czerpiński">
+  <meta property="og:title" content="{{ title or 'Maciej Czerpiński' }}">
+  <meta property="og:description" content="{{ description or 'Tech Lead & Trainer. AI-assisted development, Spec-Driven Development, Event Storming, DDD, Clean Code training.' }}">
+  <meta property="og:url" content="https://maciej.czerpinski.com{{ page.url }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:image" content="https://maciej.czerpinski.com/img/maciej.jpg">
+  <meta property="og:locale" content="{{ 'pl_PL' if lang == 'pl' else 'en_US' }}">
+  {% if ogType == 'profile' %}
+  <meta property="profile:first_name" content="Maciej">
+  <meta property="profile:last_name" content="Czerpiński">
+  {% endif %}
+  {% if ogType == 'article' and publishedTime %}
+  <meta property="article:published_time" content="{{ publishedTime }}">
+  <meta property="article:author" content="Maciej Czerpiński">
+  {% endif %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or 'Maciej Czerpiński' }}">
+  <meta name="twitter:description" content="{{ description or 'Tech Lead & Trainer. AI-assisted development, Spec-Driven Development, Event Storming, DDD, Clean Code training.' }}">
+  <meta name="twitter:image" content="https://maciej.czerpinski.com/img/maciej.jpg">
+
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        if (stored === "dark" || stored === "light") {
+          document.documentElement.setAttribute("data-theme", stored);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
+{% from "icons.njk" import icon %}
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
     <a class="site-header__name" href="{{ '/' if lang == 'en' else '/pl/' }}">Maciej Czerpiński</a>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
       {% for item in copy[lang].nav %}
-      <a href="{{ item.href }}">{{ item.label }}</a>
+      <a href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a>
       {% endfor %}
       <a href="{{ copy[lang].langSwitch.href }}" class="lang-switch">{{ copy[lang].langSwitch.label }}</a>
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="{{ copy[lang].theme.toggleLabel }}" aria-pressed="false">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2.5v2.5M12 19v2.5M4.4 4.4l1.8 1.8M17.8 17.8l1.8 1.8M2.5 12H5M19 12h2.5M4.4 19.6l1.8-1.8M17.8 6.2l1.8-1.8"></path></svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4a7 7 0 0 0 9.5 9.5Z"></path></svg>
+      </button>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     {{ content | safe }}
   </main>
 
-  <footer class="site-footer" id="contact">
+  <footer class="site-footer">
     <div>&copy; 2026 Maciej Czerpiński</div>
     <div class="site-footer__links">
-      <a href="https://www.linkedin.com/in/maciejczerpinski/">LinkedIn</a>
-      <a href="https://github.com/speccode">GitHub</a>
-      <a href="mailto:hello@speccode.com">hello@speccode.com</a>
+      <a href="https://www.linkedin.com/in/maciejczerpinski/">{{ icon("linkedin") }}LinkedIn</a>
+      <a href="https://github.com/speccode">{{ icon("github") }}GitHub</a>
+      <a href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="Hi%20Maciej">{{ icon("mail") }}<span data-email-text>hello [at] czerpinski.com</span></a>
     </div>
   </footer>
+
+  <script src="/js/theme.js"></script>
+  <script src="/js/email.js"></script>
 </body>
 </html>

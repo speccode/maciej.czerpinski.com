@@ -1,0 +1,30 @@
+---
+layout: base.njk
+lang: en
+title: Training - Maciej Czerpiński
+description: Team training in Event Storming, Domain-Driven Design, Clean Code, Refactoring, and reliable AI SDLC from Maciej Czerpiński.
+altLangHref: /pl/training/
+permalink: /training/index.html
+---
+<section id="training">
+  <h1>{{ copy.en.training.heading }}</h1>
+  <p class="training-stats">{{ copy.en.training.statsLabel }}</p>
+  <p>{{ copy.en.training.intro }}</p>
+  <p>{{ copy.en.training.topicsLabel }}</p>
+  <ul class="training-topics">
+    {% for topic in copy.en.training.topics %}
+    <li>{{ topic }}</li>
+    {% endfor %}
+  </ul>
+  <a class="cta cta--button" href="{{ copy.en.training.ctaHref }}" target="_blank" rel="noopener">{{ copy.en.training.ctaLabel }} <span class="visually-hidden">{{ copy.en.common.newTabHint }}</span></a>
+</section>
+
+<section id="testimonials">
+  <h2>{{ copy.en.training.testimonialsHeading }}</h2>
+  {% for t in testimonials.en %}
+  <div class="testimonial">
+    <p><span class="pull-quote__mark">&ldquo;</span>{{ t.quote }}<span class="pull-quote__mark">&rdquo;</span></p>
+    <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
+  </div>
+  {% endfor %}
+</section>

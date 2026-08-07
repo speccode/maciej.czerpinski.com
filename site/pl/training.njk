@@ -1,0 +1,30 @@
+---
+layout: base.njk
+lang: pl
+title: Szkolenia - Maciej Czerpiński
+description: Szkolenia zespołowe z Event Storming, Domain-Driven Design, Clean Code, refaktoryzacji i niezawodnego SDLC z AI, prowadzone przez Maciej Czerpiński.
+altLangHref: /training/
+permalink: /pl/training/index.html
+---
+<section id="training">
+  <h1>{{ copy.pl.training.heading }}</h1>
+  <p class="training-stats">{{ copy.pl.training.statsLabel }}</p>
+  <p>{{ copy.pl.training.intro }}</p>
+  <p>{{ copy.pl.training.topicsLabel }}</p>
+  <ul class="training-topics">
+    {% for topic in copy.pl.training.topics %}
+    <li>{{ topic }}</li>
+    {% endfor %}
+  </ul>
+  <a class="cta cta--button" href="{{ copy.pl.training.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.training.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</section>
+
+<section id="testimonials">
+  <h2>{{ copy.pl.training.testimonialsHeading }}</h2>
+  {% for t in testimonials.pl %}
+  <div class="testimonial">
+    <p><span class="pull-quote__mark">&bdquo;</span>{{ t.quote }}<span class="pull-quote__mark">&rdquo;</span></p>
+    <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
+  </div>
+  {% endfor %}
+</section>
