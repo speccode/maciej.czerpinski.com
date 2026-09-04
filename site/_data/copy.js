@@ -4,8 +4,8 @@ const CALENDLY = "https://calendly.com/maciej-czerpinski/consulting";
 const TRAINING_STATS = {
   trainings: 40,
   days: 76,
-  hours: 608,
-  people: 279,
+  hours: 616,
+  people: 283,
 };
 
 module.exports = {
