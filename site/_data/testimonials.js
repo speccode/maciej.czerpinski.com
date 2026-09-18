@@ -23,6 +23,7 @@ module.exports = {
     { name: "Workshop participant", role: "Advanced DDD", quote: "Engaging presentation of material, practical examples, interaction." },
     { name: "Workshop participant", role: "Domain-Driven Design (3-day)", quote: "Real-world examples are great. It's 4pm, second day of training, and I haven't been bored once. Very easy to hold your attention and engagement." },
     { name: "Workshop participant", role: "DDD & Event Storming", quote: "Very comprehensive training - both theory and practice, lots of interesting threads explored." },
+    { name: "Workshop participant", role: "Domain-Driven Design (3-day)", quote: "Great that you answered questions and worked through the doubts and discussion - even past the point of \"there's not much to unpack here\" - because in my experience those unexamined corners are exactly where the worst traps hide. You clearly knew the subject well, the atmosphere was good, very hands-on training." },
   ],
   pl: [
     { name: "Uczestnik szkolenia", role: "Big Picture Event Storming", quote: "W miły i profesjonalny sposób zaangażowałeś grupę do współpracy i wspólnego modelowania, duży plus dla Ciebie za to." },
@@ -46,5 +47,6 @@ module.exports = {
     { name: "Uczestnik szkolenia", role: "Zaawansowane DDD", quote: "Angażująca prezentacja materiału, praktyczne przykłady, interakcja." },
     { name: "Uczestnik szkolenia", role: "Domain-Driven Design (3 dni)", quote: "Przykłady z prawdziwych projektów super. Jest 16:00, drugi dzień szkolenia, i ani razu się nie nudziłam. Bardzo łatwo utrzymać uwagę i zaangażowanie." },
     { name: "Uczestnik szkolenia", role: "DDD i Event Storming", quote: "Szkolenie bardzo kompleksowe - część teoretyczna i praktyczna, wiele ciekawych wątków poruszonych." },
+    { name: "Uczestnik szkolenia", role: "Domain-Driven Design (3 dni)", quote: "Super, że odpowiadałeś na pytania, rozwiewałeś wątpliwości i wchodziłeś w dyskusję/tłumaczenia nawet mimo stwierdzenia \"w sumie to nie ma co tego roztrząsać\", bo moim zdaniem właśnie te miejsca, o których się nie gada mogą potem zawierać najgorsze pułapki. Ogółem czuć było, że dobrze się orientujesz w temacie, na zajęciach panowała dobra atmosfera, bardzo praktyczne szkolenie." },
   ],
 };

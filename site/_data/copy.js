@@ -2,10 +2,10 @@ const CALENDLY = "https://calendly.com/maciej-czerpinski/consulting";
 
 // Real counts since Oct 2022: Altkom, Sages, YourFutureSkills, Softiq.
 const TRAINING_STATS = {
-  trainings: 40,
-  days: 76,
-  hours: 616,
-  people: 283,
+  trainings: 42,
+  days: 80,
+  hours: 648,
+  people: 296,
 };
 
 module.exports = {
