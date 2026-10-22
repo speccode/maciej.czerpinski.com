@@ -1,5 +1,6 @@
 ---
 title: Remote Event Storming
+seoTitle: Remote Event Storming with Miro - A Practical Guide
 date: 2020-03-20
 description: A practical guide to running remote Event Storming workshops using Miro - preparation, facilitation tips, and lessons from real distributed teams.
 ogType: article

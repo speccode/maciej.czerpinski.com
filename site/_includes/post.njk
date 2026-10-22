@@ -11,3 +11,21 @@ layout: base.njk
     <a class="cta" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ copy[lang].postFooter.ctaSubject }}">{{ copy[lang].postFooter.ctaLabel }}</a>
   </p>
 </article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ (seoTitle or title) | dump | safe }},
+  "description": {{ description | dump | safe }},
+  "datePublished": {{ publishedTime | dump | safe }},
+  "inLanguage": {{ lang | dump | safe }},
+  "image": "https://maciej.czerpinski.com/img/maciej.jpg",
+  "mainEntityOfPage": "https://maciej.czerpinski.com{{ page.url }}",
+  "author": {
+    "@type": "Person",
+    "name": "Maciej Czerpiński",
+    "url": "https://maciej.czerpinski.com/"
+  }
+}
+</script>

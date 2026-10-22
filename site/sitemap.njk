@@ -3,11 +3,18 @@ permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {%- for entry in collections.all %}
   <url>
     <loc>https://maciej.czerpinski.com{{ entry.url }}</loc>
     <lastmod>{{ entry.date | readableDate }}</lastmod>
+{%- if entry.data.altLangHref %}
+{%- set enHref = entry.url if entry.data.lang == 'en' else entry.data.altLangHref %}
+{%- set plHref = entry.url if entry.data.lang == 'pl' else entry.data.altLangHref %}
+    <xhtml:link rel="alternate" hreflang="en" href="https://maciej.czerpinski.com{{ enHref }}"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://maciej.czerpinski.com{{ plHref }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maciej.czerpinski.com{{ enHref }}"/>
+{%- endif %}
   </url>
 {%- endfor %}
 </urlset>

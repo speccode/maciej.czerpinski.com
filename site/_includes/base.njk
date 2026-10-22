@@ -3,13 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title or "Maciej Czerpiński" }}</title>
+  <title>{{ seoTitle or title or "Maciej Czerpiński" }}</title>
   <meta name="description" content="{{ description or 'Tech Lead & Trainer. AI-assisted development, Spec-Driven Development, Event Storming, DDD, Clean Code training.' }}">
   <meta name="author" content="Maciej Czerpiński">
+  {% if noindex %}
+  <meta name="robots" content="noindex">
+  {% else %}
   <link rel="canonical" href="https://maciej.czerpinski.com{{ page.url }}">
+  {% endif %}
   {% if altLangHref %}
-  <link rel="alternate" hreflang="{{ 'pl' if lang == 'en' else 'en' }}" href="https://maciej.czerpinski.com{{ altLangHref }}">
-  <link rel="alternate" hreflang="x-default" href="https://maciej.czerpinski.com{{ page.url if lang == 'en' else altLangHref }}">
+  {% set enHref = page.url if lang == 'en' else altLangHref %}
+  {% set plHref = page.url if lang == 'pl' else altLangHref %}
+  <link rel="alternate" hreflang="en" href="https://maciej.czerpinski.com{{ enHref }}">
+  <link rel="alternate" hreflang="pl" href="https://maciej.czerpinski.com{{ plHref }}">
+  <link rel="alternate" hreflang="x-default" href="https://maciej.czerpinski.com{{ enHref }}">
   {% endif %}
 
   <meta property="og:site_name" content="Maciej Czerpiński">
