@@ -50,6 +50,34 @@ check("baseline: sitemap is well-formed and lists /pl/", () => {
   assert(xml.includes("https://maciej.czerpinski.com/pl/</loc>"), "/pl/ missing");
 });
 
+// ---- Task 2: assets ----
+const size = (u) => { const f = fileFor(u); assert(fs.existsSync(f), `missing ${u}`); return fs.statSync(f).size; };
+check("assets: Inter font built", () => assert(size("/fonts/inter-variable.woff2") > 10000, "font too small"));
+for (const w of [600, 1200]) {
+  for (const ext of ["avif", "webp", "jpg"]) {
+    check(`assets: portrait-${w}.${ext} built`, () => size(`/img/portrait-${w}.${ext}`));
+  }
+}
+check("assets: portrait jpg budgets", () => {
+  assert(size("/img/portrait-1200.jpg") < 250 * 1024, "1200 jpg >= 250KB");
+  assert(size("/img/portrait-600.jpg") < 90 * 1024, "600 jpg >= 90KB");
+});
+check("assets: og.jpg is 1200x630", () => {
+  const b = fs.readFileSync(fileFor("/img/og.jpg"));
+  let i = 2;
+  while (i < b.length) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const m = b[i + 1];
+    if (m >= 0xc0 && m <= 0xc3) {
+      const h = b.readUInt16BE(i + 5), w = b.readUInt16BE(i + 7);
+      assert(w === 1200 && h === 630, `size ${w}x${h}`);
+      return;
+    }
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  throw new Error("no SOF marker");
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {
