@@ -1,0 +1,19 @@
+---
+layout: base.njk
+lang: en
+title: "Thank you - after the training"
+description: "Thank you for the workshop. Connect on LinkedIn and tell me what you took away."
+altLangHref: /pl/po-szkoleniu/
+permalink: /after-training/index.html
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% set L = copy.en %}
+<section class="page" id="after-training">
+  <div class="wrap wrap--text prose">
+    <h1>{{ L.afterTraining.h1 }}</h1>
+    <p>{{ L.afterTraining.text }}</p>
+    <p><a class="btn btn--lg" href="{{ L.afterTraining.linkedinHref }}" target="_blank" rel="noopener">{{ L.afterTraining.linkedinLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a></p>
+    <p><a class="link-more" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ L.afterTraining.feedbackSubject }}">{{ L.afterTraining.feedbackLabel }} <span data-email-text>{{ email.user }} [at] {{ email.domain }}</span></a></p>
+  </div>
+</section>

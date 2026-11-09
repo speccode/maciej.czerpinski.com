@@ -151,6 +151,7 @@ ul { padding-left: 1.2em; }
   transition: opacity 0.15s ease;
 }
 .btn:hover, .cta--button:hover { opacity: 0.86; }
+.btn--lg { font-size: 1.125rem; padding: 1.05rem 2.25rem; }
 .link-more, .cta { font-weight: 600; text-decoration: none; }
 .link-more::after, .cta:not(.cta--button)::after { content: " \203A"; }
 .link-more:hover, .cta:hover { text-decoration: underline; }

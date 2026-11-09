@@ -348,6 +348,29 @@ for (const [u, lang] of [["/", "en"], ["/pl/", "pl"]]) {
   });
 }
 
+// ---- Task 8: after-training pages ----
+const AFTER = [["/after-training/", "en"], ["/pl/po-szkoleniu/", "pl"]];
+for (const [u, lang] of AFTER) {
+  check(`after ${u}: noindex, LinkedIn, mail, no form`, () => {
+    const html = read(u);
+    const a = loadCopy()[lang].afterTraining;
+    assert(html.includes('<meta name="robots" content="noindex">'), "noindex");
+    assert(!html.includes('rel="canonical"'), "canonical on noindex page");
+    assert(html.includes('href="https://www.linkedin.com/in/maciejczerpinski/"') && html.includes(a.linkedinLabel), "linkedin button");
+    assert(html.includes("data-email-user=") && html.includes(`data-email-subject="${a.feedbackSubject}"`), "feedback mailto");
+    assert(!html.includes("<form"), "form present");
+    assert(count(html, /<h1[ >]/g) === 1, "one h1");
+  });
+  check(`after ${u}: absent from sitemap and llms.txt`, () => {
+    assert(!read("/sitemap.xml").includes(u), "in sitemap");
+    assert(!read("/llms.txt").includes(u), "in llms.txt");
+  });
+}
+check("after: /po/ alias redirects to /pl/po-szkoleniu/", () => {
+  const html = read("/po/");
+  assert(html.includes('url=/pl/po-szkoleniu/'), "meta refresh target");
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {
