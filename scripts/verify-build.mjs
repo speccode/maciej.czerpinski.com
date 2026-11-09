@@ -371,6 +371,24 @@ check("after: /po/ alias redirects to /pl/po-szkoleniu/", () => {
   assert(html.includes('url=/pl/po-szkoleniu/'), "meta refresh target");
 });
 
+// ---- Task 9: SEO files ----
+check("seo: llms.txt has new positioning and FAQ links, no after-training", () => {
+  const t = read("/llms.txt");
+  assert(t.includes("Forward Deployed Engineer"), "positioning");
+  assert(t.includes("https://maciej.czerpinski.com/faq/") && t.includes("https://maciej.czerpinski.com/pl/faq/"), "faq links");
+  assert(!/after-training|po-szkoleniu|\/po\b/.test(t), "after-training leaked");
+});
+check("seo: default meta description uses new positioning", () => {
+  const base = fs.readFileSync(path.join(root, "site/_includes/base.njk"), "utf8");
+  assert(!base.includes("Tech Lead & Trainer. AI-assisted"), "old default description remains");
+  assert(base.includes("Forward Deployed Engineer"), "new default description");
+});
+check("seo: every sitemap URL has a built file", () => {
+  const urls = [...read("/sitemap.xml").matchAll(/<loc>https:\/\/maciej\.czerpinski\.com([^<]*)<\/loc>/g)].map((m) => m[1]);
+  assert(urls.length >= 12, `only ${urls.length} urls`);
+  for (const u of urls) read(u);
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

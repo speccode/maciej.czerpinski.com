@@ -1,6 +1,6 @@
 # Maciej Czerpiński
 
-> Tech Lead specializing in AI-assisted software development, Spec-Driven Development, and engineering team training. 15+ years in PHP/Laravel and distributed systems.
+> Forward Deployed Engineer, trainer and consultant. Goes in where it hurts most (legacy systems, AI SDLC, fractional CTO, team training) and stays until the team runs on its own. 15+ years in software engineering.
 
 Maciej leads engineering teams through legacy systems without documentation, business pressure, and AI tooling that hasn't earned its hype yet. He takes on projects everyone agrees matter and nobody starts, and ships them end-to-end. He trains teams in Event Storming, Domain-Driven Design, and Clean Code - taught at Sages and Altkom, now booked directly.
 
@@ -11,6 +11,7 @@ He also runs speccode.com, an AI-driven consulting practice built on Spec-Driven
 - [About](https://maciej.czerpinski.com/about/): background, working style, what kind of problems he takes on
 - [Training](https://maciej.czerpinski.com/training/): Event Storming, Domain-Driven Design, and Clean Code workshops, with participant testimonials
 - [Blog](https://maciej.czerpinski.com/blog/): articles on Event Storming, Domain-Driven Design, and AI-assisted development
+- [FAQ](https://maciej.czerpinski.com/faq/): what a Forward Deployed Engineer is, how engagements run, fractional CTO, training format, AI SDLC
 - [Contact](https://maciej.czerpinski.com/contact/): book a call directly
 
 ## Elsewhere
@@ -21,4 +22,4 @@ He also runs speccode.com, an AI-driven consulting practice built on Spec-Driven
 
 ## Polish
 
-This site also ships a full Polish translation at [/pl/](https://maciej.czerpinski.com/pl/), mirroring the same pages (About, Training, Contact). The blog is English-only.
+This site also ships a full Polish translation at [/pl/](https://maciej.czerpinski.com/pl/), mirroring the same pages (About, Training, FAQ at [/pl/faq/](https://maciej.czerpinski.com/pl/faq/), Contact). The blog is English-only.
