@@ -78,6 +78,78 @@ check("assets: og.jpg is 1200x630", () => {
   throw new Error("no SOF marker");
 });
 
+// ---- Task 3: design system and base layout ----
+function allHtml(dir = DOCS, out = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const f = path.join(dir, e.name);
+    if (e.isDirectory()) allHtml(f, out);
+    else if (e.name.endsWith(".html")) out.push(f);
+  }
+  return out;
+}
+const lum = (hex) => {
+  const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+};
+export const contrast = (a, b) => {
+  const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
+  return (x + 0.05) / (y + 0.05);
+};
+function tokenBlocks() {
+  const css = read("/css/style.css");
+  const grab = (selRe) => {
+    const m = css.match(new RegExp(selRe + "\\s*\\{([^}]*)\\}"));
+    assert(m, `token block not found: ${selRe}`);
+    const get = (n) => (m[1].match(new RegExp(`--${n}:\\s*(#[0-9a-fA-F]{6})`)) || [])[1];
+    return { bg: get("bg"), ink: get("ink"), grey: get("grey"), sub: get("sub"), line: get("line"), btnBg: get("btn-bg"), btnInk: get("btn-ink") };
+  };
+  return {
+    light: grab(":root"),
+    mediaDark: grab(':root:not\\(\\[data-theme="light"\\]\\)'),
+    attrDark: grab(':root\\[data-theme="dark"\\]'),
+  };
+}
+check("design: no Google Fonts anywhere in built html", () => {
+  const bad = allHtml().filter((f) => fs.readFileSync(f, "utf8").includes("fonts.googleapis.com"));
+  assert(!bad.length, `google fonts in ${bad.length} files, e.g. ${bad[0]}`);
+});
+check("design: og:image and twitter:image are /img/og.jpg", () => {
+  const html = read("/");
+  assert(html.includes('property="og:image" content="https://maciej.czerpinski.com/img/og.jpg"'), "og:image");
+  assert(html.includes('name="twitter:image" content="https://maciej.czerpinski.com/img/og.jpg"'), "twitter:image");
+});
+check("design: font preloaded, favicon linked", () => {
+  const html = read("/");
+  assert(html.includes('rel="preload" href="/fonts/inter-variable.woff2"'), "font preload");
+  assert(html.includes('rel="icon"'), "favicon link");
+  assert(fs.existsSync(fileFor("/img/favicon.svg")), "favicon file");
+});
+check("design: light tokens match spec", () => {
+  const t = tokenBlocks().light;
+  const want = { bg: "#fbfbfd", ink: "#1d1d1f", grey: "#6e6e73", sub: "#515154", line: "#e5e5ea", btnBg: "#1d1d1f", btnInk: "#ffffff" };
+  for (const k of Object.keys(want)) assert(t[k]?.toLowerCase() === want[k], `light --${k}: ${t[k]} != ${want[k]}`);
+});
+for (const key of ["mediaDark", "attrDark"]) {
+  check(`design: dark tokens (${key}) match spec`, () => {
+    const t = tokenBlocks()[key];
+    const want = { bg: "#0b0b0d", ink: "#f5f5f7", grey: "#8e8e93", sub: "#a1a1a6", line: "#2c2c2e", btnBg: "#f5f5f7", btnInk: "#1d1d1f" };
+    for (const k of Object.keys(want)) assert(t[k]?.toLowerCase() === want[k], `${key} --${k}: ${t[k]} != ${want[k]}`);
+  });
+}
+check("design: text contrast >= 4.5 in both themes", () => {
+  const b = tokenBlocks();
+  for (const [name, t] of Object.entries({ light: b.light, dark: b.attrDark })) {
+    for (const k of ["ink", "grey", "sub"]) assert(contrast(t[k], t.bg) >= 4.5, `${name} ${k} on bg = ${contrast(t[k], t.bg).toFixed(2)}`);
+    assert(contrast(t.btnInk, t.btnBg) >= 4.5, `${name} button contrast`);
+  }
+});
+check("design: reduced-motion and focus-visible present", () => {
+  const css = read("/css/style.css");
+  assert(css.includes("prefers-reduced-motion: reduce"), "reduced motion");
+  assert(css.includes(":focus-visible"), "focus-visible");
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {
