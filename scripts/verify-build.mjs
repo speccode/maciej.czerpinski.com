@@ -291,6 +291,29 @@ check("home: EN and PL have the same structure counts", () => {
   assert(homeStats.en === homeStats.pl, `EN ${homeStats.en} vs PL ${homeStats.pl}`);
 });
 
+// ---- Task 6: inner pages ----
+const INNER = ["/about/", "/pl/about/", "/training/", "/pl/training/", "/contact/", "/pl/contact/", "/blog/", "/blog/remote-event-storming/", "/404.html"];
+for (const u of INNER) {
+  check(`inner ${u}: uses .wrap and exactly one h1`, () => {
+    const html = read(u);
+    assert(/class="wrap[ "]/.test(html.split("<main")[1] || ""), "no .wrap inside main");
+    assert(count(html, /<h1[ >]/g) === 1, `h1 count ${count(html, /<h1[ >]/g)}`);
+  });
+}
+for (const u of ["/contact/", "/pl/contact/"]) {
+  check(`inner ${u}: calendly button and mail link, no form`, () => {
+    const html = read(u);
+    assert(html.includes(CALENDLY_URL) && html.includes("data-email-user="), "calendly or mail missing");
+    assert(!html.includes("<form"), "form present");
+  });
+}
+check("inner: blog post ends with a next step (calendly)", () => {
+  const html = read("/blog/remote-event-storming/");
+  assert(html.slice(html.indexOf("</article>") - 900).includes(CALENDLY_URL), "no calendly next step at end of post");
+});
+for (const u of ["/training/", "/pl/training/"]) check(`inner ${u}: #testimonials anchor kept`, () => assert(read(u).includes('id="testimonials"'), "anchor"));
+for (const u of ["/about/", "/pl/about/"]) check(`inner ${u}: jobTitle uses new positioning`, () => assert(read(u).includes('"jobTitle": "Forward Deployed Engineer'), "jobTitle"));
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

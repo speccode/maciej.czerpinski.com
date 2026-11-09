@@ -1,15 +1,19 @@
 ---
 layout: base.njk
 ---
-<article>
+<article class="page">
+<div class="wrap wrap--text prose">
   <h1>{{ title }}</h1>
   <p class="blog-list__date">{{ date | readableDate }}</p>
   {{ content | safe }}
-  <p>
-    <a class="cta" href="/blog/">{{ copy[lang].postFooter.backLabel }}</a>
-    &nbsp;&middot;&nbsp;
-    <a class="cta" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ copy[lang].postFooter.ctaSubject }}">{{ copy[lang].postFooter.ctaLabel }}</a>
-  </p>
+  <aside class="next-step">
+    <a class="btn" href="{{ copy[lang].postFooter.bookHref }}" target="_blank" rel="noopener">{{ copy[lang].postFooter.bookLabel }}<span class="visually-hidden"> {{ copy[lang].common.newTabHint }}</span></a>
+    <p>
+      <a class="cta" href="/blog/">{{ copy[lang].postFooter.backLabel }}</a>
+      <a class="cta" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ copy[lang].postFooter.ctaSubject }}">{{ copy[lang].postFooter.ctaLabel }}</a>
+    </p>
+  </aside>
+</div>
 </article>
 
 <script type="application/ld+json">
@@ -20,7 +24,7 @@ layout: base.njk
   "description": {{ description | dump | safe }},
   "datePublished": {{ publishedTime | dump | safe }},
   "inLanguage": {{ lang | dump | safe }},
-  "image": "https://maciej.czerpinski.com/img/maciej.jpg",
+  "image": "https://maciej.czerpinski.com/img/og.jpg",
   "mainEntityOfPage": "https://maciej.czerpinski.com{{ page.url }}",
   "author": {
     "@type": "Person",

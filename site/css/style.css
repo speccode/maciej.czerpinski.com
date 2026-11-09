@@ -226,17 +226,20 @@ ul { padding-left: 1.2em; }
 .faq__a p:last-child { margin-bottom: 0; }
 
 /* ---------- Inner pages (about, training, contact, blog, post, 404) ---------- */
-main > section:not(.section):not(.hero), main > article { max-width: 46rem; margin-inline: auto; padding: clamp(2rem, 5vw, 4rem) var(--gutter); }
-main > section:not(.section):not(.hero) + section:not(.section):not(.hero) { border-top: 1px solid var(--line); }
-main h1 { font-size: clamp(2rem, 1rem + 3.4vw, 3.25rem); letter-spacing: -0.04em; margin-bottom: 1.25rem; }
-main h2 { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2rem); margin: 2rem 0 0.9rem; }
-main > section:not(.section):not(.hero) p, main > article p, main > article li { max-width: var(--measure); }
-main > article h2, main > article h3 { margin-top: 2.25rem; }
-main > article img { border-radius: var(--radius-sm); margin: 1.5rem 0; }
-main > article blockquote { margin: 1.5rem 0; padding-left: 1.2rem; border-left: 2px solid var(--line); color: var(--sub); }
-main > article code { font-family: var(--mono); font-size: 0.9em; background: var(--surface); padding: 0.1em 0.35em; border-radius: 5px; }
-main > article pre { overflow-x: auto; padding: 1rem 1.2rem; background: var(--surface); border-radius: var(--radius-sm); font-size: 0.9rem; }
-main > article pre code { background: none; padding: 0; }
+.page { padding-block: clamp(2rem, 5vw, 4rem); }
+.page + .page { border-top: 1px solid var(--line); }
+.prose > * { max-width: 46rem; }
+.prose h1 { font-size: clamp(2rem, 1rem + 3.4vw, 3.25rem); letter-spacing: -0.04em; margin-bottom: 1.25rem; }
+.prose h2 { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2rem); margin: 2rem 0 0.9rem; }
+.prose p, .prose li { max-width: var(--measure); }
+.prose h2, .prose h3 { margin-top: 2.25rem; }
+.prose img { border-radius: var(--radius-sm); margin: 1.5rem 0; }
+.prose blockquote { margin: 1.5rem 0; padding-left: 1.2rem; border-left: 2px solid var(--line); color: var(--sub); }
+.prose code { font-family: var(--mono); font-size: 0.9em; background: var(--surface); padding: 0.1em 0.35em; border-radius: 5px; }
+.prose pre { overflow-x: auto; padding: 1rem 1.2rem; background: var(--surface); border-radius: var(--radius-sm); font-size: 0.9rem; }
+.prose pre code { background: none; padding: 0; }
+.next-step { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.next-step p { margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
 .training-stats { color: var(--grey); font-size: 0.9375rem; }
 .training-topics { columns: 2; column-gap: 2rem; }
 .testimonial { padding: 1.25rem 0; border-top: 1px solid var(--line); }

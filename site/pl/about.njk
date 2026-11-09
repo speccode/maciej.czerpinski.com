@@ -7,12 +7,14 @@ altLangHref: /about/
 ogType: profile
 permalink: /pl/about/index.html
 ---
-<section id="about">
+<section class="page" id="about">
+<div class="wrap wrap--text prose">
   <h1>{{ copy.pl.about.heading }}</h1>
   {% for p in copy.pl.about.paragraphs %}
   <p>{{ p }}</p>
   {% endfor %}
   <a class="cta cta--button" href="{{ copy.pl.about.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.about.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</div>
 </section>
 
 <script type="application/ld+json">
@@ -24,7 +26,7 @@ permalink: /pl/about/index.html
   "mainEntity": {
     "@type": "Person",
     "name": "Maciej Czerpiński",
-    "jobTitle": "Tech Lead & Trainer",
+    "jobTitle": "Forward Deployed Engineer, trener i konsultant",
     "url": "https://maciej.czerpinski.com/",
     "image": "https://maciej.czerpinski.com/img/maciej.jpg",
     "sameAs": [

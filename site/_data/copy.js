@@ -212,6 +212,8 @@ const copy = {
       feedbackSubject: "Training%20feedback",
     },
     postFooter: {
+      bookLabel: "Book a call",
+      bookHref: CALENDLY,
       backLabel: "← All posts",
       ctaLabel: "Found this useful? Say hi",
       ctaSubject: "About%20your%20post",
@@ -409,6 +411,8 @@ const copy = {
       feedbackSubject: "Opinia%20po%20szkoleniu",
     },
     postFooter: {
+      bookLabel: "Umów rozmowę",
+      bookHref: CALENDLY,
       backLabel: "← Wszystkie posty",
       ctaLabel: "Przydatne? Napisz do mnie",
       ctaSubject: "W%20sprawie%20wpisu",

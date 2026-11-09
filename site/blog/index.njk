@@ -5,7 +5,8 @@ title: Event Storming, DDD and AI Dev Blog - Maciej Czerpiński
 description: Articles by Maciej Czerpiński on Event Storming, Domain-Driven Design, and AI-assisted software development.
 permalink: /blog/index.html
 ---
-<section>
+<section class="page">
+<div class="wrap wrap--text prose">
   <h1>{{ copy.en.blogIndex.heading }}</h1>
   {% for post in collections.post %}
   <div class="blog-list__item">
@@ -15,4 +16,5 @@ permalink: /blog/index.html
   {% else %}
   <p class="blog-empty">{{ copy.en.blogIndex.empty }}</p>
   {% endfor %}
+</div>
 </section>

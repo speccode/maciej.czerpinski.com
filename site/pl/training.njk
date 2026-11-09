@@ -6,7 +6,8 @@ description: Szkolenia zespołowe z Event Storming, Domain-Driven Design, Clean 
 altLangHref: /training/
 permalink: /pl/training/index.html
 ---
-<section id="training">
+<section class="page" id="training">
+<div class="wrap wrap--text prose">
   <h1>{{ copy.pl.training.heading }}</h1>
   <p class="training-stats">{{ copy.pl.training.statsLabel }}</p>
   <p>{{ copy.pl.training.intro }}</p>
@@ -17,9 +18,11 @@ permalink: /pl/training/index.html
     {% endfor %}
   </ul>
   <a class="cta cta--button" href="{{ copy.pl.training.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.training.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</div>
 </section>
 
-<section id="testimonials">
+<section class="page" id="testimonials">
+<div class="wrap wrap--text prose">
   <h2>{{ copy.pl.training.testimonialsHeading }}</h2>
   {% for t in testimonials.pl %}
   <div class="testimonial">
@@ -27,4 +30,5 @@ permalink: /pl/training/index.html
     <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
   </div>
   {% endfor %}
+</div>
 </section>

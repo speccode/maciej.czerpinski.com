@@ -7,13 +7,16 @@ altLangHref: /contact/
 permalink: /pl/contact/index.html
 ---
 {% from "icons.njk" import icon %}
-<section id="contact">
+<section class="page" id="contact">
+<div class="wrap wrap--text prose">
   <h1>{{ copy.pl.contact.heading }}</h1>
   <p>{{ copy.pl.contact.intro }}</p>
   <a class="cta cta--button" href="{{ copy.pl.contact.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.contact.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
+</div>
 </section>
 
-<section>
+<section class="page">
+<div class="wrap wrap--text prose">
   <h2>{{ copy.pl.contact.linksHeading }}</h2>
   <ul class="contact-links">
     {% for link in copy.pl.contact.links %}
@@ -24,4 +27,5 @@ permalink: /pl/contact/index.html
     {% endif %}
     {% endfor %}
   </ul>
+</div>
 </section>
