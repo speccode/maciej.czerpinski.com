@@ -99,3 +99,6 @@
     <p class="evidence__more"><a class="link-more" href="{{ L.faq.linkHref }}">{{ L.faq.linkLabel }}</a></p>
   </div>
 </section>
+
+{% set items = L.faq.items | selectattr("home") %}
+{% include "faq-jsonld.njk" %}

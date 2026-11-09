@@ -1,0 +1,26 @@
+---
+layout: base.njk
+lang: en
+title: "FAQ - Forward Deployed Engineer, fractional CTO and training - Maciej Czerpiński"
+description: "Answers about working with a Forward Deployed Engineer: how an engagement runs, how a fractional CTO differs from a full-time CTO, training format, AI SDLC and Spec-Driven Development."
+altLangHref: /pl/faq/
+permalink: /faq/index.html
+---
+{% set L = copy.en %}
+<section class="page" id="faq">
+  <div class="wrap wrap--text prose">
+    <h1>{{ L.faq.h2 }}</h1>
+    <div class="faq">
+      {% for item in L.faq.items %}
+      <details>
+        <summary>{{ item.q }}</summary>
+        <div class="faq__a"><p>{{ item.a }}</p></div>
+      </details>
+      {% endfor %}
+    </div>
+    <p><a class="btn" href="{{ L.contact.ctaHref }}" target="_blank" rel="noopener">{{ L.contact.ctaLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a></p>
+  </div>
+</section>
+
+{% set items = L.faq.items %}
+{% include "faq-jsonld.njk" %}

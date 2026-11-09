@@ -314,6 +314,40 @@ check("inner: blog post ends with a next step (calendly)", () => {
 for (const u of ["/training/", "/pl/training/"]) check(`inner ${u}: #testimonials anchor kept`, () => assert(read(u).includes('id="testimonials"'), "anchor"));
 for (const u of ["/about/", "/pl/about/"]) check(`inner ${u}: jobTitle uses new positioning`, () => assert(read(u).includes('"jobTitle": "Forward Deployed Engineer'), "jobTitle"));
 
+// ---- Task 7: FAQ pages and structured data ----
+const jsonLd = (html) =>
+  [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+const faqLd = (html) => {
+  const f = jsonLd(html).filter((j) => j["@type"] === "FAQPage");
+  assert(f.length === 1, `expected 1 FAQPage JSON-LD, got ${f.length}`);
+  return f[0];
+};
+for (const [u, lang, alt] of [["/faq/", "en", "/pl/faq/"], ["/pl/faq/", "pl", "/faq/"]]) {
+  check(`faq ${u}: built, hreflang pair, in sitemap`, () => {
+    const html = read(u);
+    assert(html.includes(`hreflang="en" href="https://maciej.czerpinski.com${lang === "en" ? u : alt}"`), "hreflang en");
+    assert(html.includes(`hreflang="pl" href="https://maciej.czerpinski.com${lang === "pl" ? u : alt}"`), "hreflang pl");
+    assert(read("/sitemap.xml").includes(`https://maciej.czerpinski.com${u}</loc>`), "not in sitemap");
+  });
+  check(`faq ${u}: JSON-LD matches visible questions and copy`, () => {
+    const html = read(u);
+    const ld = faqLd(html);
+    const items = loadCopy()[lang].faq.items;
+    assert(ld.mainEntity.length === items.length, `ld ${ld.mainEntity.length} vs copy ${items.length}`);
+    assert(count(html, /<details/g) === items.length, "visible details vs copy");
+    assert(ld.mainEntity[0].name === items[0].q && ld.mainEntity[0].acceptedAnswer.text === items[0].a, "first Q/A differs");
+    assert(count(html, /<h1[ >]/g) === 1, "one h1");
+  });
+}
+for (const [u, lang] of [["/", "en"], ["/pl/", "pl"]]) {
+  check(`home ${u}: FAQPage JSON-LD equals visible home FAQ`, () => {
+    const html = read(u);
+    const ld = faqLd(html);
+    assert(ld.mainEntity.length === count(sectionHtml(html, "faq"), /<details/g), "ld vs visible");
+    assert(!html.includes("rich result"), "no rich-result claims in copy");
+  });
+}
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

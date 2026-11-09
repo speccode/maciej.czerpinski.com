@@ -1,0 +1,6 @@
+{# Expects `items` (list of {q, a}). Prints one FAQPage JSON-LD block. #}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{%- for i in items %}{"@type":"Question","name":{{ i.q | dump | safe }},"acceptedAnswer":{"@type":"Answer","text":{{ i.a | dump | safe }}}}{% if not loop.last %},{% endif %}{% endfor -%}
+]}
+</script>
