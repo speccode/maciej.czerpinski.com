@@ -186,17 +186,18 @@ ul { padding-left: 1.2em; }
 .card__desc { margin: 0.9rem 0 0; color: var(--sub); }
 .card__topics { margin: 0.9rem 0 0; color: var(--sub); font-size: 0.9375rem; }
 .card__quote { margin: 1.2rem 0 0; padding-left: 1rem; border-left: 2px solid var(--line); }
-.card__quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.875rem; color: var(--grey); }
+.card__quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.875rem; color: var(--sub); }
 .steps { list-style: none; margin: 1.5rem 0 0; padding: 0; border-top: 1px solid var(--line); }
 .step { display: flex; flex-wrap: wrap; gap: 0 0.6rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); font-weight: 550; font-size: 0.9375rem; }
 .step span { font-weight: 400; color: var(--grey); }
-.card .link-more { margin-top: auto; padding-top: 1.5rem; align-self: flex-start; }
+.card .steps { margin-bottom: 1.5rem; }
+.card .link-more { margin-top: auto; align-self: flex-start; }
 
 /* ---------- Evidence (testimonials) ---------- */
 .quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(2rem, 5vw, 3.5rem); }
 .quote { margin: 0; }
 .quote p { font-size: 1.125rem; line-height: 1.5; letter-spacing: -0.01em; }
-.quote cite { display: block; font-style: normal; font-size: 0.875rem; color: var(--grey); }
+.quote cite { display: block; font-style: normal; font-size: 0.875rem; color: var(--sub); }
 .evidence__more { margin-top: 2rem; }
 
 /* ---------- About / contact / blog teasers ---------- */
@@ -261,6 +262,9 @@ ul { padding-left: 1.2em; }
   .cards, .quotes, .split { grid-template-columns: 1fr; }
   .proof { grid-template-columns: repeat(2, auto); }
   .training-topics { columns: 1; }
+}
+@media (max-width: 860px) {
+  .link-more, .cta, .site-nav a, .site-footer__links a { display: inline-flex; align-items: center; min-height: 44px; }
 }
 @media (max-width: 480px) {
   .site-nav { gap: 0.25rem 1rem; }
