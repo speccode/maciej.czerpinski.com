@@ -231,6 +231,66 @@ check("copy: EN drafts are flagged in source", () => {
   assert(fs.readFileSync(path.join(root, "site/_data/copy.js"), "utf8").includes("EN-DRAFT"), "no EN-DRAFT marker");
 });
 
+// ---- Task 5: homepage ----
+const CALENDLY_URL = "https://calendly.com/maciej-czerpinski/consulting";
+const HOME_IDS = ["hero", "offer", "proof", "about", "blog", "contact", "faq"];
+export const sectionHtml = (html, id) => {
+  const m = html.match(new RegExp('<section[^>]*id="' + id + '"[\\s\\S]*?</section>'));
+  assert(m, `section #${id} not found`);
+  return m[0];
+};
+const count = (s, re) => (s.match(re) || []).length;
+const stripTags = (h) => h.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+const homeStats = {};
+for (const [url, lang] of [["/", "en"], ["/pl/", "pl"]]) {
+  check(`home ${url}: sections in spec order`, () => {
+    const main = read(url).split('<main id="main">')[1];
+    const ids = [...main.matchAll(/<section[^>]*\sid="([a-z-]+)"/g)].map((m) => m[1]);
+    assert(ids.join() === HOME_IDS.join(), `ids: ${ids.join()}`);
+  });
+  check(`home ${url}: hero text, calendly button, no talents`, () => {
+    const c = loadCopy()[lang].hero;
+    const hero = sectionHtml(read(url), "hero");
+    const text = stripTags(hero);
+    for (const t of [c.h1, c.h1Grey, c.sub]) assert(text.includes(t), `hero lacks: ${t}`);
+    assert(new RegExp('<a[^>]*class="btn"[^>]*href="' + CALENDLY_URL + '"[^>]*target="_blank"|<a[^>]*href="' + CALENDLY_URL + '"[^>]*class="btn"[^>]*target="_blank"').test(hero), "no Calendly .btn with target=_blank");
+    assert(!/talents|php/i.test(hero), "talents or PHP in hero");
+    assert(count(hero, /<strong>/g) === 4, "hero proof bar needs 4 stats");
+    assert(hero.includes("<picture>") && hero.includes('fetchpriority="high"') && hero.includes('width="1200"'), "hero picture");
+  });
+  check(`home ${url}: 4 offer cards, 3 steps each, topics+quote on training`, () => {
+    const offer = sectionHtml(read(url), "offer");
+    assert(count(offer, /class="card"/g) === 4, "cards");
+    assert(count(offer, /class="step"/g) === 12, "steps");
+    assert(offer.includes("card__quote"), "training quote");
+    const c = loadCopy()[lang].offer;
+    assert(stripTags(offer).includes(c.cards[3].quote.text), "quote text");
+  });
+  check(`home ${url}: 3 evidence quotes, about, latest blog links (max 3)`, () => {
+    const html = read(url);
+    assert(count(sectionHtml(html, "proof"), /class="quote"/g) === 3, "quotes");
+    assert(sectionHtml(html, "about").includes(loadCopy()[lang].about.paragraphs[0].slice(0, 40)), "about text");
+    const posts = fs.readdirSync(path.join(root, "site/blog/posts")).filter((f) => f.endsWith(".md")).length;
+    assert(count(sectionHtml(html, "blog"), /<li>/g) === Math.min(3, posts), "blog items");
+  });
+  check(`home ${url}: faq 4-6 details; contact has calendly and mail fallback`, () => {
+    const html = read(url);
+    const n = count(sectionHtml(html, "faq"), /<details/g);
+    assert(n >= 4 && n <= 6, `faq details ${n}`);
+    const contact = sectionHtml(html, "contact");
+    assert(contact.includes(CALENDLY_URL), "calendly in contact");
+    assert(contact.includes("data-email-user=") && contact.includes("hello [at] czerpinski.com"), "mail link fallback");
+    assert(!/hello@czerpinski\.com/.test(html), "literal address in html");
+  });
+  check(`home ${url}: record structure for parity`, () => {
+    const h = read(url);
+    homeStats[lang] = [count(h, /class="card"/g), count(h, /class="step"/g), count(h, /class="quote"/g), count(h, /<details/g), count(h, /<li>/g)].join();
+  });
+}
+check("home: EN and PL have the same structure counts", () => {
+  assert(homeStats.en === homeStats.pl, `EN ${homeStats.en} vs PL ${homeStats.pl}`);
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

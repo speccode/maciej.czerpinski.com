@@ -27,6 +27,14 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByTag("post").sort((a, b) => b.date - a.date);
   });
 
+  // Testimonials about practice first, topped up with the rest, n items.
+  eleventyConfig.addFilter("practiceQuotes", function (list, n) {
+    const practice = /prakty|practic|hands-on|ćwicz/i;
+    const hits = list.filter((t) => practice.test(t.quote));
+    const rest = list.filter((t) => !practice.test(t.quote));
+    return hits.concat(rest).slice(0, n);
+  });
+
   eleventyConfig.addFilter("readableDate", function (dateObj) {
     return dateObj.toISOString().slice(0, 10);
   });

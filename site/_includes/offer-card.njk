@@ -1,0 +1,22 @@
+<article class="card" id="offer-{{ card.id }}">
+  <p class="card__need">{{ card.need }}</p>
+  <h3 class="card__title">{{ card.title }}</h3>
+  <p class="card__desc">{{ card.desc }}</p>
+  {% if card.topics %}<p class="card__topics">{{ card.topics }}</p>{% endif %}
+  {% if card.quote %}
+  <blockquote class="card__quote">
+    <p>&bdquo;{{ card.quote.text }}&rdquo;</p>
+    <cite>{{ card.quote.by }}</cite>
+  </blockquote>
+  {% endif %}
+  <ol class="steps">
+    {% for step in card.steps %}
+    <li class="step">{{ step.name }} <span>{{ step.note }}</span></li>
+    {% endfor %}
+  </ol>
+  {% if card.ctaHref.startsWith("http") %}
+  <a class="link-more" href="{{ card.ctaHref }}" target="_blank" rel="noopener">{{ card.ctaLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a>
+  {% else %}
+  <a class="link-more" href="{{ card.ctaHref }}">{{ card.ctaLabel }}</a>
+  {% endif %}
+</article>

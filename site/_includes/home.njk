@@ -1,0 +1,101 @@
+{# Shared homepage. Expects `lang` (en|pl) from page front matter. #}
+{% set L = copy[lang] %}
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero__grid">
+      <div data-enter>
+        <h1>{{ L.hero.h1 }}<span class="grey">{{ L.hero.h1Grey }}</span></h1>
+        <p class="hero__sub">{{ L.hero.sub }}</p>
+        <div class="hero__actions">
+          <a class="btn" href="{{ L.hero.ctaHref }}" target="_blank" rel="noopener">{{ L.hero.ctaLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a>
+          <a class="link-more" href="{{ L.hero.secondaryHref }}">{{ L.hero.secondaryLabel }}</a>
+        </div>
+      </div>
+      <div class="hero__photo" data-enter="2">
+        <picture>
+          <source type="image/avif" srcset="/img/portrait-600.avif 600w, /img/portrait-1200.avif 1200w" sizes="(max-width: 860px) 80vw, 440px">
+          <source type="image/webp" srcset="/img/portrait-600.webp 600w, /img/portrait-1200.webp 1200w" sizes="(max-width: 860px) 80vw, 440px">
+          <img src="/img/portrait-1200.jpg" srcset="/img/portrait-600.jpg 600w, /img/portrait-1200.jpg 1200w" sizes="(max-width: 860px) 80vw, 440px" alt="{{ L.hero.photoAlt }}" width="1200" height="1500" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+    </div>
+    <ul class="proof">
+      {% for item in L.proof %}
+      <li><strong>{{ item.value }}</strong><span>{{ item.label }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="offer">
+  <div class="wrap">
+    <h2 class="section__h2">{{ L.offer.h2 }}<span class="grey">{{ L.offer.h2Grey }}</span></h2>
+    <div class="cards">
+      {% for card in L.offer.cards %}{% include "offer-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="proof">
+  <div class="wrap">
+    <h2 class="section__h2">{{ L.evidence.h2 }}</h2>
+    <div class="quotes">
+      {% for t in testimonials[lang] | practiceQuotes(3) %}
+      <blockquote class="quote">
+        <p>&bdquo;{{ t.quote }}&rdquo;</p>
+        <cite>{{ t.name }}, {{ t.role }}</cite>
+      </blockquote>
+      {% endfor %}
+    </div>
+    <p class="evidence__more"><a class="link-more" href="{{ L.evidence.moreHref }}">{{ L.evidence.moreLabel }}</a></p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap split">
+    <h2 class="section__h2">{{ L.aboutHome.h2 }}</h2>
+    <div>
+      <p>{{ L.about.paragraphs[0] }}</p>
+      <p>{{ L.about.paragraphs[1] }}</p>
+      <a class="link-more" href="{{ L.aboutHome.ctaHref }}">{{ L.aboutHome.ctaLabel }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="blog">
+  <div class="wrap">
+    <h2 class="section__h2">{{ L.blogTeaser.heading }}</h2>
+    <ul class="postlist">
+      {% for post in collections.post %}{% if loop.index <= 3 %}
+      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+      {% endif %}{% endfor %}
+    </ul>
+    <p class="evidence__more"><a class="link-more" href="/blog/">{{ L.blogTeaser.viewAllLabel }}</a></p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap contact-block">
+    <h2 class="section__h2">{{ L.contact.h2 }}</h2>
+    <p>{{ L.contact.intro }}</p>
+    <div class="contact-block__actions">
+      <a class="btn" href="{{ L.contact.ctaHref }}" target="_blank" rel="noopener">{{ L.contact.ctaLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a>
+      <a class="link-more" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ L.contact.mailSubject }}">{{ L.contact.mailLabel }} <span data-email-text>{{ email.user }} [at] {{ email.domain }}</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <h2 class="section__h2">{{ L.faq.h2 }}</h2>
+    <div class="faq">
+      {% for item in L.faq.items %}{% if item.home %}
+      <details>
+        <summary>{{ item.q }}</summary>
+        <div class="faq__a"><p>{{ item.a }}</p></div>
+      </details>
+      {% endif %}{% endfor %}
+    </div>
+    <p class="evidence__more"><a class="link-more" href="{{ L.faq.linkHref }}">{{ L.faq.linkLabel }}</a></p>
+  </div>
+</section>

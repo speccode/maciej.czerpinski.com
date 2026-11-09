@@ -1,75 +1,26 @@
 ---
 layout: base.njk
 lang: pl
-title: Maciej Czerpiński - Tech Lead i trener
-description: Maciej Czerpiński to Tech Lead specjalizujący się w rozwoju oprogramowania wspieranym przez AI, Spec-Driven Development i modernizacji systemów legacy. 15+ lat w PHP/Laravel i systemach rozproszonych.
+title: Maciej Czerpiński - Forward Deployed Engineer, trener i konsultant
+description: Forward Deployed Engineer, trener i konsultant. Wchodzę tam, gdzie boli najbardziej - legacy, AI SDLC, fractional CTO, szkolenia zespołów - i zostaję, aż zespół działa sam.
 altLangHref: /
 permalink: /pl/index.html
 ---
-<section class="hero">
-  <div class="hero__identity">
-    <img class="hero__photo" src="/img/maciej.jpg" alt="Maciej Czerpiński" width="72" height="72">
-    <h1>{{ copy.pl.hero.greeting }}</h1>
-  </div>
-  <p class="hero__tagline">{{ copy.pl.hero.tagline }}</p>
-  {% for line in copy.pl.hero.lines %}
-  <p>{{ line }}</p>
-  {% endfor %}
-  <p class="hero__talents">{{ copy.pl.hero.talents }}</p>
-  <a class="cta cta--button" href="{{ copy.pl.hero.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.hero.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
-</section>
-
-<section class="teaser-grid">
-  <div class="teaser">
-    <span class="teaser__eyebrow">{{ copy.pl.homeTeaser.aboutEyebrow }}</span>
-    <p>{{ copy.pl.homeTeaser.aboutSummary }}</p>
-    <a class="cta" href="{{ copy.pl.homeTeaser.aboutCtaHref }}">{{ copy.pl.homeTeaser.aboutCtaLabel }}</a>
-  </div>
-  <div class="teaser">
-    <span class="teaser__eyebrow">{{ copy.pl.homeTeaser.trainingEyebrow }}</span>
-    <p>{{ copy.pl.homeTeaser.trainingSummary }}</p>
-    <a class="cta" href="{{ copy.pl.homeTeaser.trainingCtaHref }}">{{ copy.pl.homeTeaser.trainingCtaLabel }}</a>
-  </div>
-</section>
-
-<section>
-  <h2>{{ copy.pl.homeTeaser.testimonialsHeading }}</h2>
-  {% for t in testimonials.pl %}
-  {% if loop.index <= 2 %}
-  <div class="testimonial">
-    <p><span class="pull-quote__mark">&bdquo;</span>{{ t.quote }}<span class="pull-quote__mark">&rdquo;</span></p>
-    <div class="testimonial__name">{{ t.name }} - {{ t.role }}</div>
-  </div>
-  {% endif %}
-  {% endfor %}
-  <a class="cta" href="{{ copy.pl.homeTeaser.testimonialsCtaHref }}">{{ copy.pl.homeTeaser.testimonialsCtaLabel }} ({{ testimonials.pl.length }})</a>
-</section>
-
-<section id="blog-teaser">
-  <h2>{{ copy.pl.blogTeaser.heading }}</h2>
-  {% for post in collections.post %}
-  {% if loop.index <= 3 %}
-  <div class="blog-list__item">
-    <a href="{{ post.url }}">{{ post.data.title }}</a>
-  </div>
-  {% endif %}
-  {% endfor %}
-  <a class="cta" href="/blog/">{{ copy.pl.blogTeaser.viewAllLabel }}</a>
-</section>
+{% include "home.njk" %}
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Maciej Czerpiński",
-  "jobTitle": "Tech Lead & Trainer",
+  "jobTitle": "Forward Deployed Engineer, trener i konsultant",
   "url": "https://maciej.czerpinski.com/pl/",
-  "image": "https://maciej.czerpinski.com/img/maciej.jpg",
+  "image": "https://maciej.czerpinski.com/img/portrait-1200.jpg",
   "sameAs": [
     "https://www.linkedin.com/in/maciejczerpinski/",
     "https://github.com/speccode",
     "https://speccode.com"
   ],
-  "knowsAbout": ["AI-assisted software development", "Spec-Driven Development", "Event Storming", "Domain-Driven Design", "Clean Code", "PHP", "Laravel"]
+  "knowsAbout": ["Legacy system modernization", "AI-assisted software development", "Spec-Driven Development", "Event Storming", "Domain-Driven Design", "Clean Code", "Fractional CTO"]
 }
 </script>
