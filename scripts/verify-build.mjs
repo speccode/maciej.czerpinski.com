@@ -150,6 +150,87 @@ check("design: reduced-motion and focus-visible present", () => {
   assert(css.includes(":focus-visible"), "focus-visible");
 });
 
+// ---- Task 4: copy data ----
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const loadCopy = () => {
+  const f = path.join(root, "site/_data/copy.js");
+  delete require.cache[f];
+  return require(f);
+};
+const shape = (v) =>
+  Array.isArray(v) ? "[" + (v.length ? shape(v[0]) : "") + "]"
+  : v && typeof v === "object" ? "{" + Object.keys(v).sort().map((k) => k + ":" + shape(v[k])).join(",") + "}"
+  : typeof v;
+const strings = (v, out = []) => {
+  if (typeof v === "string") out.push(v);
+  else if (Array.isArray(v)) v.forEach((x) => strings(x, out));
+  else if (v && typeof v === "object") Object.values(v).forEach((x) => strings(x, out));
+  return out;
+};
+check("copy: en and pl have identical key shape", () => {
+  const c = loadCopy();
+  assert(shape(c.en) === shape(c.pl), "en/pl shape differs:\nEN " + shape(c.en) + "\nPL " + shape(c.pl));
+});
+check("copy: offer has 4 cards in order, 3 steps each", () => {
+  const c = loadCopy();
+  for (const l of ["en", "pl"]) {
+    const cards = c[l].offer.cards;
+    assert(cards.map((x) => x.id).join() === "legacy,ai,cto,training", `${l} ids`);
+    cards.forEach((x) => assert(x.steps.length === 3, `${l} ${x.id} steps`));
+  }
+});
+check("copy: PL hero and proof match spec", () => {
+  const c = loadCopy().pl;
+  assert(c.hero.h1 === "Wchodzę tam, gdzie boli najbardziej.", "h1");
+  assert(c.hero.h1Grey === "Zostaję, aż zespół działa sam.", "h1Grey");
+  assert(c.hero.sub === "Forward Deployed Engineer, trener i konsultant. 15+ lat w okopach IT.", "sub");
+  assert(c.hero.ctaLabel === "Umów rozmowę", "cta");
+  assert(c.proof.map((x) => x.value).join() === "302,664,43,15+", "proof values " + c.proof.map((x) => x.value));
+});
+check("copy: no PHP or Gallup in hero/proof", () => {
+  const c = loadCopy();
+  for (const l of ["en", "pl"]) {
+    const t = strings([c[l].hero, c[l].proof]).join(" ");
+    assert(!/php/i.test(t), `${l} PHP in hero/proof`);
+    assert(!/learner|gallup|strategic/i.test(t), `${l} talents in hero`);
+  }
+});
+check("copy: AI card asks about AI SDLC, cto card minimal wording", () => {
+  const c = loadCopy();
+  for (const l of ["en", "pl"]) assert(/AI SDLC/.test(c[l].offer.cards[1].need), `${l} AI SDLC in need`);
+  assert(c.pl.offer.cards[2].steps.map((x) => x.name).join() === "Rozpoznanie,Kierunek i KPI,Prowadzenie w okopach", "cto steps");
+});
+check("copy: training card quote comes from testimonials.js", () => {
+  const c = loadCopy(), t = require(path.join(root, "site/_data/testimonials.js"));
+  for (const l of ["en", "pl"]) {
+    const q = c[l].offer.cards[3].quote;
+    assert(q && t[l].some((x) => x.quote === q.text), `${l} quote not found in testimonials`);
+  }
+  assert(c.pl.offer.cards[3].quote.text === "Dużo praktyki popartej realnymi przykładami.", "PL quote text");
+});
+check("copy: FAQ has >=6 items, 4-6 on home, no money claims", () => {
+  const c = loadCopy();
+  for (const l of ["en", "pl"]) {
+    const items = c[l].faq.items;
+    assert(items.length >= 6, `${l} faq items ${items.length}`);
+    const home = items.filter((i) => i.home).length;
+    assert(home >= 4 && home <= 6, `${l} home faq ${home}`);
+    assert(!/PLN|zł|\$|€/.test(strings(items).join(" ")), `${l} faq mentions money`);
+  }
+});
+check("copy: contact and afterTraining fields present", () => {
+  const c = loadCopy();
+  for (const l of ["en", "pl"]) {
+    assert(c[l].contact.mailLabel && c[l].contact.h2, `${l} contact`);
+    assert(c[l].afterTraining.linkedinHref === "https://www.linkedin.com/in/maciejczerpinski/", `${l} linkedin`);
+    assert(c[l].afterTraining.feedbackSubject, `${l} feedbackSubject`);
+  }
+});
+check("copy: EN drafts are flagged in source", () => {
+  assert(fs.readFileSync(path.join(root, "site/_data/copy.js"), "utf8").includes("EN-DRAFT"), "no EN-DRAFT marker");
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {
