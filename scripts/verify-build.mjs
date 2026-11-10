@@ -389,6 +389,20 @@ check("seo: every sitemap URL has a built file", () => {
   for (const u of urls) read(u);
 });
 
+// ---- Final review fixes: Polish plurals ----
+check("plural-pl: picks one/few/many by number", () => {
+  const { pluralPl } = require(path.join(root, "site/_lib/plural-pl.js"));
+  const f = ["a", "b", "c"];
+  const want = { 1: "a", 2: "b", 3: "b", 4: "b", 5: "c", 12: "c", 14: "c", 21: "c", 22: "b", 43: "b", 112: "c", 305: "c", 664: "b", 665: "c" };
+  for (const [n, w] of Object.entries(want)) assert(pluralPl(+n, f) === w, `n=${n}: ${pluralPl(+n, f)} != ${w}`);
+});
+check("plural-pl: current PL labels and FAQ/stat strings are grammatical", () => {
+  const pl = loadCopy().pl;
+  assert(pl.proof.map((x) => x.label).join() === "osoby przeszkolone,godziny warsztatów,szkolenia,lat w inżynierii oprogramowania", "proof labels " + pl.proof.map((x) => x.label));
+  assert(pl.faq.items[4].a.includes("43 szkolenia i 302 przeszkolone osoby"), "faq: " + pl.faq.items[4].a);
+  assert(pl.training.statsLabel === "43 szkolenia · 82 dni · 664 godziny · 302 przeszkolone osoby", "stats: " + pl.training.statsLabel);
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

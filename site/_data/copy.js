@@ -1,4 +1,5 @@
 const testimonials = require("./testimonials");
+const { pluralPl } = require("../_lib/plural-pl");
 
 const CALENDLY = "https://calendly.com/maciej-czerpinski/consulting";
 const LINKEDIN = "https://www.linkedin.com/in/maciejczerpinski/";
@@ -10,6 +11,17 @@ const TRAINING_STATS = {
   hours: 664,
   people: 302,
 };
+
+// PL number + noun phrase, so the grammar follows the number (TRAINING_STATS is bumped by a skill).
+const PL = {
+  people: ["przeszkolona osoba", "przeszkolone osoby", "przeszkolonych osób"],
+  peopleLabel: ["osoba przeszkolona", "osoby przeszkolone", "osób przeszkolonych"],
+  hours: ["godzina", "godziny", "godzin"],
+  hoursLabel: ["godzina warsztatów", "godziny warsztatów", "godzin warsztatów"],
+  trainings: ["szkolenie", "szkolenia", "szkoleń"],
+  days: ["dzień", "dni", "dni"],
+};
+const pl = (n, key) => pluralPl(n, PL[key]);
 
 // The training card quote is taken from testimonials.js (never retyped here).
 const pickQuote = (lang, needle) => {
@@ -242,9 +254,9 @@ const copy = {
       photoAlt: "Maciej Czerpiński",
     },
     proof: [
-      { value: String(TRAINING_STATS.people), label: "osoby przeszkolone" },
-      { value: String(TRAINING_STATS.hours), label: "godziny warsztatów" },
-      { value: String(TRAINING_STATS.trainings), label: "szkolenia" },
+      { value: String(TRAINING_STATS.people), label: pl(TRAINING_STATS.people, "peopleLabel") },
+      { value: String(TRAINING_STATS.hours), label: pl(TRAINING_STATS.hours, "hoursLabel") },
+      { value: String(TRAINING_STATS.trainings), label: pl(TRAINING_STATS.trainings, "trainings") },
       { value: "15+", label: "lat w inżynierii oprogramowania" },
     ],
     // DRAFT-PENDING-APPROVAL
@@ -339,7 +351,7 @@ const copy = {
       testimonialsHeading: "Co mówią uczestnicy",
       ctaLabel: "Umów rozmowę o szkoleniu",
       ctaHref: CALENDLY,
-      statsLabel: `${TRAINING_STATS.trainings} szkoleń · ${TRAINING_STATS.days} dni · ${TRAINING_STATS.hours} godzin · ${TRAINING_STATS.people} przeszkolonych osób`,
+      statsLabel: `${TRAINING_STATS.trainings} ${pl(TRAINING_STATS.trainings, "trainings")} · ${TRAINING_STATS.days} ${pl(TRAINING_STATS.days, "days")} · ${TRAINING_STATS.hours} ${pl(TRAINING_STATS.hours, "hours")} · ${TRAINING_STATS.people} ${pl(TRAINING_STATS.people, "people")}`,
     },
     blogTeaser: {
       heading: "Ostatnie wpisy",
@@ -393,7 +405,7 @@ const copy = {
         },
         {
           q: "Jakie tematy szkoleń prowadzisz?",
-          a: `Event Storming, Domain-Driven Design, Clean Code, refaktoryzacja i wdrażanie niezawodnego SDLC z AI. Do tej pory: ${TRAINING_STATS.trainings} szkoleń i ${TRAINING_STATS.people} przeszkolonych osób.`,
+          a: `Event Storming, Domain-Driven Design, Clean Code, refaktoryzacja i wdrażanie niezawodnego SDLC z AI. Do tej pory: ${TRAINING_STATS.trainings} ${pl(TRAINING_STATS.trainings, "trainings")} i ${TRAINING_STATS.people} ${pl(TRAINING_STATS.people, "people")}.`,
         },
         {
           q: "Czym jest AI SDLC i dlaczego Spec-Driven Development?",

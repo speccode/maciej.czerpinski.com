@@ -111,6 +111,17 @@ for (const [w, h] of [[1440, 900], [390, 844]]) {
   await ctx.close();
 }
 
+// H. phone links: text and inner spans must keep their spaces (no flex on links), 44px tap height
+for (const w of [390, 320]) {
+  const ctx = await browser.newContext({ viewport: { width: w, height: 900 } });
+  const p = await ctx.newPage(); await p.goto(BASE + "/pl/", { waitUntil: "networkidle" });
+  const bad = await p.evaluate(() => [...document.querySelectorAll(".link-more, .cta, .site-nav a, .site-footer__links a")]
+    .filter((a) => /flex/.test(getComputedStyle(a).display) || a.getBoundingClientRect().height < 43.5)
+    .map((a) => a.textContent.trim().slice(0, 30) + " " + getComputedStyle(a).display + " h=" + Math.round(a.getBoundingClientRect().height)));
+  ok(`H ${w}px: links are not flex and are >= 44px tall`, bad.length === 0, bad.join(" | "));
+  await ctx.close();
+}
+
 // G. third-party requests
 ok("G no third-party requests", externals.size === 0, [...externals].join(", "));
 

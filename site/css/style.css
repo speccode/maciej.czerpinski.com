@@ -264,7 +264,8 @@ ul { padding-left: 1.2em; }
   .training-topics { columns: 1; }
 }
 @media (max-width: 860px) {
-  .link-more, .cta, .site-nav a, .site-footer__links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .link-more, .cta { display: inline-block; padding-block: 0.6rem; }
+  .site-nav a, .site-footer__links a { display: inline-block; padding-block: 0.75rem; }
 }
 @media (max-width: 480px) {
   .site-nav { gap: 0.25rem 1rem; }
