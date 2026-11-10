@@ -411,7 +411,10 @@ for (const [u, lang] of [["/about/", "en"], ["/pl/about/", "pl"]]) {
     for (const t of ["Learner", "Individualization", "Strategic", "Analytical", "Maximizer"]) assert(html.includes(t), `talent ${t}`);
     assert(a.talents.length === 5 && a.how.length === 3, "copy shape");
     assert(count(html, /<h2[ >]/g) >= 3, "needs >= 3 sections");
-    assert(html.includes(a.intro[1].slice(0, 40)), "pattern paragraph");
+    assert(html.includes(a.intro[1].slice(0, 40)), "second personal paragraph");
+    assert(/NVC/.test(html), "NVC mention");
+    assert(html.indexOf(a.thinkH2) < html.indexOf(a.howH2), "personal/talents block must come before method block");
+    assert(html.includes(a.howIntro.slice(0, 40)), "method intro (scope-widening example)");
     assert(html.includes(CALENDLY_URL), "calendly");
     assert(count(html, /<h1[ >]/g) === 1, "one h1");
   });

@@ -134,18 +134,19 @@ const copy = {
     // EN-DRAFT, DRAFT-PENDING-APPROVAL
     about: {
       heading: "About",
-      lead: "I go into a team, find out what really hurts, do what needs doing, and leave the team able to run on its own.",
+      lead: "I'm Maciej. A father of three, I love travelling, and for 15+ years I've been building software and training teams.",
       intro: [
-        "I take on what everyone agrees matters and nobody starts: rebuilds and systems nobody understands any more. I carry them through to the end, together with the team.",
-        "Before I start, I look at what surrounds the task. Sometimes I widen the scope to do it better. When a financial report needed a more precise method, I built a separate endpoint instead of patching the old one and agreed it with another team. The precision of the data went up significantly, and the company now makes decisions on better information.",
+        "Our children learn at home. So every day I practise what I teach teams: explaining so that someone truly understands, not just hears.",
+        "I work on myself a lot. I practise Nonviolent Communication (NVC), because good decisions in a team start with a conversation in which nobody has to defend themselves.",
       ],
+      howIntro: "I take on what everyone agrees matters and nobody starts. Before I begin, I look at what surrounds the task, and sometimes I widen the scope to do it better. When a financial report needed a more precise method, I built a separate endpoint instead of patching the old one and agreed it with another team. The precision of the data went up significantly, and the company now makes decisions on better information.",
       howH2: "How I work",
       how: [
         { name: "Recon", text: "I map the domain and the pain, so we fix the right thing." },
         { name: "Action", text: "I do what is needed together with your team, in the code, not from an ivory tower." },
         { name: "Handover", text: "Documentation and training, so the team copes without me." },
       ],
-      thinkH2: "How I think",
+      thinkH2: "Who I am at work",
       thinkIntro: "Five CliftonStrengths talents, and what you get from them.",
       talents: [
         { name: "Learner", text: "I get into a domain and a system I don't know quickly." },
@@ -359,18 +360,19 @@ const copy = {
     // DRAFT-PENDING-APPROVAL
     about: {
       heading: "O mnie",
-      lead: "Wchodzę do zespołu, rozpoznaję, co naprawdę boli, robię to, co trzeba, i zostawiam zespół, który radzi sobie sam.",
+      lead: "Jestem Maciej. Ojciec trójki dzieci, uwielbiam podróże, a od 15+ lat tworzę oprogramowanie i uczę zespoły.",
       intro: [
-        "Biorę się za to, co wszyscy uznają za ważne, a nikt nie zaczyna: przebudowy i systemy, których nikt już nie rozumie. Doprowadzam je do końca razem z zespołem.",
-        "Zanim zacznę, sprawdzam, co dzieje się dookoła zadania. Zdarza mi się rozszerzyć zakres, żeby zrobić to lepiej. Gdy raport finansowy wymagał dokładniejszej metody, zamiast łatać starą zrobiłem osobny endpoint i uzgodniłem to z drugim zespołem. Precyzja danych znacznie wzrosła, a firma podejmuje decyzje na lepszych informacjach.",
+        "Nasze dzieci uczą się w domu. Dlatego codziennie ćwiczę to, czego uczę zespoły: tłumaczyć tak, żeby ktoś naprawdę zrozumiał, a nie tylko usłyszał.",
+        "Dużo pracuję nad sobą. Praktykuję Porozumienie bez Przemocy (NVC), bo dobre decyzje w zespole zaczynają się od rozmowy, w której nikt nie musi się bronić.",
       ],
+      howIntro: "Biorę się za to, co wszyscy uznają za ważne, a nikt nie zaczyna. Zanim zacznę, sprawdzam, co dzieje się dookoła zadania, i zdarza mi się rozszerzyć zakres, żeby zrobić to lepiej. Gdy raport finansowy wymagał dokładniejszej metody, zamiast łatać starą zrobiłem osobny endpoint i uzgodniłem to z drugim zespołem. Precyzja danych znacznie wzrosła, a firma podejmuje decyzje na lepszych informacjach.",
       howH2: "Jak pracuję",
       how: [
         { name: "Rozpoznanie", text: "Mapuję domenę i ból, żebyśmy naprawiali właściwą rzecz." },
         { name: "Działanie", text: "Robię to, co trzeba, razem z Twoim zespołem, w kodzie, nie z wieży z kości słoniowej." },
         { name: "Oddanie", text: "Dokumentacja i szkolenie, żeby zespół radził sobie beze mnie." },
       ],
-      thinkH2: "Jak myślę",
+      thinkH2: "Kim jestem w pracy",
       thinkIntro: "Pięć talentów CliftonStrengths i to, co z nich masz.",
       talents: [
         { name: "Learner", text: "Szybko wchodzę w domenę i system, których nie znam." },
