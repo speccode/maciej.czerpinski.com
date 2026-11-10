@@ -1,8 +1,7 @@
 <article class="card" id="offer-{{ card.id }}">
   <p class="card__need">{{ card.need }}</p>
   <h3 class="card__title">{{ card.title }}</h3>
-  <p class="card__desc">{{ card.desc }}</p>
-  {% if card.topics %}<p class="card__topics">{{ card.topics }}</p>{% endif %}
+  <p class="card__desc">{{ card.desc }}{% if card.topics %} {{ card.topics }}{% endif %}</p>
   {% if card.quote %}
   <blockquote class="card__quote">
     <p>&bdquo;{{ card.quote.text }}&rdquo;</p>
@@ -11,7 +10,7 @@
   {% endif %}
   <ol class="steps">
     {% for step in card.steps %}
-    <li class="step">{{ step.name }} <span>{{ step.note }}</span></li>
+    <li class="step">{{ step.name }}</li>
     {% endfor %}
   </ol>
   {% if card.ctaHref.startsWith("http") %}
