@@ -125,13 +125,38 @@ const copy = {
       moreLabel: "See all reviews",
       moreHref: "/training/#testimonials",
     },
-    aboutHome: { h2: "About me", ctaLabel: "More about me", ctaHref: "/about/" },
+    aboutHome: {
+      h2: "About me",
+      text: "I take on what everyone agrees matters and nobody starts. I carry it through to the end, together with the team.",
+      ctaLabel: "More about me",
+      ctaHref: "/about/",
+    },
+    // EN-DRAFT, DRAFT-PENDING-APPROVAL
     about: {
       heading: "About",
-      paragraphs: [
-        "I lead engineering teams through the hardest parts of software: legacy systems without documentation, business pressure, and AI tooling that hasn't earned its hype yet.",
-        "I take on projects everyone agrees matter and nobody starts - the ones postponed for years - and I ship them end-to-end.",
-        "I review more code than I write - several engineers I've mentored now lead their own teams.",
+      lead: "I go into a team, find out what really hurts, do what needs doing, and leave the team able to run on its own.",
+      intro: [
+        "I take on what everyone agrees matters and nobody starts: rebuilds and systems nobody understands any more. I carry them through to the end, together with the team.",
+        "Before I start, I look at what surrounds the task. Sometimes I widen the scope to do it better. When a financial report needed a more precise method, I built a separate endpoint instead of patching the old one and agreed it with another team. The precision of the data went up significantly, and the company now makes decisions on better information.",
+      ],
+      howH2: "How I work",
+      how: [
+        { name: "Recon", text: "I map the domain and the pain, so we fix the right thing." },
+        { name: "Action", text: "I do what is needed together with your team, in the code, not from an ivory tower." },
+        { name: "Handover", text: "Documentation and training, so the team copes without me." },
+      ],
+      thinkH2: "How I think",
+      thinkIntro: "Five CliftonStrengths talents, and what you get from them.",
+      talents: [
+        { name: "Learner", text: "I get into a domain and a system I don't know quickly." },
+        { name: "Individualization", text: "I fit the way of working to the people in the team, not to a template." },
+        { name: "Strategic", text: "I see several paths and choose the one that leads to the goal." },
+        { name: "Analytical", text: "I ask for evidence and data before I change anything." },
+        { name: "Maximizer", text: "I'd rather make what works excellent than start over." },
+      ],
+      proofH2: "Proof",
+      proof: [
+        "Most of the value I add is not code I write myself, but the level I raise the team to through code review and mentoring. Several engineers I have led now lead their own teams.",
       ],
       ctaLabel: "Book a call",
       ctaHref: CALENDLY,
@@ -325,13 +350,38 @@ const copy = {
       moreLabel: "Zobacz wszystkie opinie",
       moreHref: "/pl/training/#testimonials",
     },
-    aboutHome: { h2: "O mnie", ctaLabel: "Więcej o mnie", ctaHref: "/pl/about/" },
+    aboutHome: {
+      h2: "O mnie",
+      text: "Biorę się za to, co wszyscy uznają za ważne, a nikt nie zaczyna. Doprowadzam to do końca razem z zespołem.",
+      ctaLabel: "Więcej o mnie",
+      ctaHref: "/pl/about/",
+    },
+    // DRAFT-PENDING-APPROVAL
     about: {
       heading: "O mnie",
-      paragraphs: [
-        "Prowadzę zespoły inżynierskie przez to, co najtrudniejsze w oprogramowaniu: systemy legacy bez dokumentacji, presję biznesową i narzędzia AI, które jeszcze nie spełniają obietnic.",
-        "Prowadzę zespoły przez projekty, które inni odkładają latami - i dowożę je end-to-end.",
-        "Więcej code review robię niż kodu piszę - kilku inżynierów, których mentorowałem, prowadzi dziś własne zespoły.",
+      lead: "Wchodzę do zespołu, rozpoznaję, co naprawdę boli, robię to, co trzeba, i zostawiam zespół, który radzi sobie sam.",
+      intro: [
+        "Biorę się za to, co wszyscy uznają za ważne, a nikt nie zaczyna: przebudowy i systemy, których nikt już nie rozumie. Doprowadzam je do końca razem z zespołem.",
+        "Zanim zacznę, sprawdzam, co dzieje się dookoła zadania. Zdarza mi się rozszerzyć zakres, żeby zrobić to lepiej. Gdy raport finansowy wymagał dokładniejszej metody, zamiast łatać starą zrobiłem osobny endpoint i uzgodniłem to z drugim zespołem. Precyzja danych znacznie wzrosła, a firma podejmuje decyzje na lepszych informacjach.",
+      ],
+      howH2: "Jak pracuję",
+      how: [
+        { name: "Rozpoznanie", text: "Mapuję domenę i ból, żebyśmy naprawiali właściwą rzecz." },
+        { name: "Działanie", text: "Robię to, co trzeba, razem z Twoim zespołem, w kodzie, nie z wieży z kości słoniowej." },
+        { name: "Oddanie", text: "Dokumentacja i szkolenie, żeby zespół radził sobie beze mnie." },
+      ],
+      thinkH2: "Jak myślę",
+      thinkIntro: "Pięć talentów CliftonStrengths i to, co z nich masz.",
+      talents: [
+        { name: "Learner", text: "Szybko wchodzę w domenę i system, których nie znam." },
+        { name: "Individualization", text: "Dopasowuję sposób pracy do ludzi w zespole, nie do szablonu." },
+        { name: "Strategic", text: "Widzę kilka dróg i wybieram tę, która prowadzi do celu." },
+        { name: "Analytical", text: "Pytam o dowody i dane, zanim cokolwiek zmienię." },
+        { name: "Maximizer", text: "Wolę dopracować to, co działa, niż zaczynać od nowa." },
+      ],
+      proofH2: "Dowody",
+      proof: [
+        "Najwięcej wartości daję nie kodem, który piszę sam, ale poziomem, na jaki podnoszę zespół przez code review i mentoring. Kilku inżynierów, których prowadziłem, kieruje dziś własnymi zespołami.",
       ],
       ctaLabel: "Umów rozmowę",
       ctaHref: CALENDLY,

@@ -7,15 +7,7 @@ altLangHref: /about/
 ogType: profile
 permalink: /pl/about/index.html
 ---
-<section class="page" id="about">
-<div class="wrap wrap--text prose">
-  <h1>{{ copy.pl.about.heading }}</h1>
-  {% for p in copy.pl.about.paragraphs %}
-  <p>{{ p }}</p>
-  {% endfor %}
-  <a class="cta cta--button" href="{{ copy.pl.about.ctaHref }}" target="_blank" rel="noopener">{{ copy.pl.about.ctaLabel }} <span class="visually-hidden">{{ copy.pl.common.newTabHint }}</span></a>
-</div>
-</section>
+{% include "about-page.njk" %}
 
 <script type="application/ld+json">
 {

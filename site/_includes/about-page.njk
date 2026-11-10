@@ -1,0 +1,37 @@
+{# Shared About page. Expects `lang` from page front matter. #}
+{% set L = copy[lang] %}
+<section class="page" id="about">
+  <div class="wrap wrap--text prose">
+    <h1>{{ L.about.heading }}</h1>
+    <p class="lead">{{ L.about.lead }}</p>
+    {% for p in L.about.intro %}<p>{{ p }}</p>{% endfor %}
+
+    <h2>{{ L.about.howH2 }}</h2>
+    <ol class="defs">
+      {% for item in L.about.how %}
+      <li><strong>{{ item.name }}</strong><span>{{ item.text }}</span></li>
+      {% endfor %}
+    </ol>
+
+    <h2>{{ L.about.thinkH2 }}</h2>
+    <p>{{ L.about.thinkIntro }}</p>
+    <ul class="defs">
+      {% for t in L.about.talents %}
+      <li><strong>{{ t.name }}</strong><span>{{ t.text }}</span></li>
+      {% endfor %}
+    </ul>
+
+    <h2>{{ L.about.proofH2 }}</h2>
+    {% for p in L.about.proof %}<p>{{ p }}</p>{% endfor %}
+    <ul class="proof">
+      {% for item in L.proof %}
+      <li><strong>{{ item.value }}</strong><span>{{ item.label }}</span></li>
+      {% endfor %}
+    </ul>
+
+    <p class="about-actions">
+      <a class="btn" href="{{ L.about.ctaHref }}" target="_blank" rel="noopener">{{ L.about.ctaLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a>
+      <a class="link-more" href="{{ L.hero.secondaryHref }}">{{ L.hero.secondaryLabel }}</a>
+    </p>
+  </div>
+</section>

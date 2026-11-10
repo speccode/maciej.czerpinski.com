@@ -269,7 +269,7 @@ for (const [url, lang] of [["/", "en"], ["/pl/", "pl"]]) {
   check(`home ${url}: 3 evidence quotes, about, latest blog links (max 3)`, () => {
     const html = read(url);
     assert(count(sectionHtml(html, "proof"), /class="quote"/g) === 3, "quotes");
-    assert(sectionHtml(html, "about").includes(loadCopy()[lang].about.paragraphs[0].slice(0, 40)), "about text");
+    assert(sectionHtml(html, "about").includes(loadCopy()[lang].aboutHome.text.slice(0, 40)), "about teaser text");
     const posts = fs.readdirSync(path.join(root, "site/blog/posts")).filter((f) => f.endsWith(".md")).length;
     assert(count(sectionHtml(html, "blog"), /<li>/g) === Math.min(3, posts), "blog items");
   });
@@ -401,6 +401,28 @@ check("plural-pl: current PL labels and FAQ/stat strings are grammatical", () =>
   assert(pl.proof.map((x) => x.label).join() === "osoby przeszkolone,godziny warsztatów,szkolenia,lat w inżynierii oprogramowania", "proof labels " + pl.proof.map((x) => x.label));
   assert(pl.faq.items[4].a.includes("43 szkolenia i 302 przeszkolone osoby"), "faq: " + pl.faq.items[4].a);
   assert(pl.training.statsLabel === "43 szkolenia · 82 dni · 664 godziny · 302 przeszkolone osoby", "stats: " + pl.training.statsLabel);
+});
+
+// ---- About page rewrite ----
+for (const [u, lang] of [["/about/", "en"], ["/pl/about/", "pl"]]) {
+  check(`about ${u}: talents, how-I-work steps, proof, CTA`, () => {
+    const html = read(u);
+    const a = loadCopy()[lang].about;
+    for (const t of ["Learner", "Individualization", "Strategic", "Analytical", "Maximizer"]) assert(html.includes(t), `talent ${t}`);
+    assert(a.talents.length === 5 && a.how.length === 3, "copy shape");
+    assert(count(html, /<h2[ >]/g) >= 3, "needs >= 3 sections");
+    assert(html.includes(a.intro[1].slice(0, 40)), "pattern paragraph");
+    assert(html.includes(CALENDLY_URL), "calendly");
+    assert(count(html, /<h1[ >]/g) === 1, "one h1");
+  });
+  check(`about ${u}: not a copy of the homepage teaser`, () => {
+    const c = loadCopy()[lang];
+    assert(strings(c.about).join(" ").length > 4 * strings(c.aboutHome).join(" ").length, "about page not substantially longer than teaser");
+  });
+}
+check("about: no employer name anywhere in source copy", () => {
+  const t = fs.readFileSync(path.join(root, "site/_data/copy.js"), "utf8");
+  assert(!/cleeng/i.test(t), "employer named in copy.js");
 });
 
 // ---- append later tasks above this line ----
