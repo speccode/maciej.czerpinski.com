@@ -239,6 +239,13 @@ ul { padding-left: 1.2em; }
 .prose code { font-family: var(--mono); font-size: 0.9em; background: var(--surface); padding: 0.1em 0.35em; border-radius: 5px; }
 .prose pre { overflow-x: auto; padding: 1rem 1.2rem; background: var(--surface); border-radius: var(--radius-sm); font-size: 0.9rem; }
 .prose pre code { background: none; padding: 0; }
+.prose .lead { font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem); line-height: 1.4; letter-spacing: -0.015em; color: var(--sub); margin-bottom: 1.5rem; }
+.defs { list-style: none; margin: 1rem 0 0; padding: 0; border-top: 1px solid var(--line); }
+.defs li { display: grid; grid-template-columns: 11rem 1fr; gap: 0.25rem 1.5rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); max-width: none; }
+.defs strong { font-weight: 600; }
+.defs span { color: var(--sub); }
+.prose .proof { margin-top: 1.5rem; }
+.about-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.75rem; margin-top: 2.5rem; }
 .next-step { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
 .next-step p { margin: 1.25rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
 .training-stats { color: var(--grey); font-size: 0.9375rem; }
@@ -261,6 +268,7 @@ ul { padding-left: 1.2em; }
   .cards, .quotes, .split { grid-template-columns: 1fr; }
   .proof { grid-template-columns: repeat(2, auto); }
   .training-topics { columns: 1; }
+  .defs li { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
   .link-more, .cta { display: inline-block; padding-block: 0.6rem; }
