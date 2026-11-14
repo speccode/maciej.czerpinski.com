@@ -15,6 +15,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("site/img");
   eleventyConfig.addPassthroughCopy("site/fonts");
   eleventyConfig.addPassthroughCopy("site/js");
+  eleventyConfig.addPassthroughCopy("site/materialy");
   eleventyConfig.addPassthroughCopy({ "site/CNAME": "CNAME" });
   eleventyConfig.addPassthroughCopy({ "site/robots.txt": "robots.txt" });
   eleventyConfig.addPassthroughCopy({ "site/llms.txt": "llms.txt" });
