@@ -10,7 +10,7 @@
     <p>{{ L.about.thinkIntro }}</p>
     <ul class="defs">
       {% for t in L.about.talents %}
-      <li><strong>{{ t.name }}</strong><span>{{ t.text }}</span></li>
+      <li><strong>{{ t.name }}</strong> <span>{{ t.text }}</span></li>
       {% endfor %}
     </ul>
 
@@ -18,7 +18,7 @@
     <p>{{ L.about.howIntro }}</p>
     <ol class="defs">
       {% for item in L.about.how %}
-      <li><strong>{{ item.name }}</strong><span>{{ item.text }}</span></li>
+      <li><strong>{{ item.name }}</strong> <span>{{ item.text }}</span></li>
       {% endfor %}
     </ol>
 
@@ -26,7 +26,7 @@
     {% for p in L.about.proof %}<p>{{ p }}</p>{% endfor %}
     <ul class="proof">
       {% for item in L.proof %}
-      <li><strong>{{ item.value }}</strong><span>{{ item.label }}</span></li>
+      <li><strong>{{ item.value }}</strong> <span>{{ item.label }}</span></li>
       {% endfor %}
     </ul>
 

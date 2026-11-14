@@ -428,6 +428,12 @@ check("about: no employer name anywhere in source copy", () => {
   assert(!/cleeng/i.test(t), "employer named in copy.js");
 });
 
+// ---- Markup robustness: no glued bold + text ----
+check("markup: no </strong><span> adjacency (text must stay readable without CSS)", () => {
+  const bad = allHtml().filter((f) => fs.readFileSync(f, "utf8").includes("</strong><span>"));
+  assert(!bad.length, `glued in ${bad.length} files, e.g. ${bad[0]}`);
+});
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {
