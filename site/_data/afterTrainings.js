@@ -5,10 +5,18 @@ const materials = {
     label: "Pytania, które pomagają budować Ubiquitous Language (PDF)",
     href: "/materialy/ubiquitous-language-cheatsheet.pdf",
   },
+  "bc-cheatsheet": {
+    label: "Pytania, które pomagają znaleźć Bounded Contexts (PDF)",
+    href: "/materialy/bounded-contexts-cheatsheet.pdf",
+  },
+  "cm-cheatsheet": {
+    label: "Context Mapping: pytania, które pomagają wybrać wzorzec (PDF)",
+    href: "/materialy/context-mapping-cheatsheet.pdf",
+  },
 };
 
 const trainings = [
-  { slug: "ddd", name: "Event Storming + DDD", materials: ["ul-cheatsheet"] },
+  { slug: "ddd", name: "Event Storming + DDD", materials: ["ul-cheatsheet", "bc-cheatsheet", "cm-cheatsheet"] },
 ];
 
 module.exports = trainings.map((t) => ({
