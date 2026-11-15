@@ -1,0 +1,29 @@
+---
+layout: base.njk
+lang: pl
+pagination:
+  data: afterTrainings
+  size: 1
+  alias: t
+eleventyComputed:
+  title: "Dziękuję - po szkoleniu {{ t.name }}"
+description: "Materiały po szkoleniu. Połącz się na LinkedIn i napisz, co zabierasz ze szkolenia."
+permalink: "/pl/po-szkoleniu/{{ t.slug }}/index.html"
+noindex: true
+eleventyExcludeFromCollections: true
+---
+{% set L = copy.pl %}
+<section class="page" id="after-training">
+  <div class="wrap wrap--text prose">
+    <h1>{{ L.afterTraining.h1 }}</h1>
+    <p>{{ L.afterTraining.text }}</p>
+    <h2>Materiały: {{ t.name }}</h2>
+    <ul>
+      {% for m in t.materials %}
+      <li><a href="{{ m.href }}" download>{{ m.label }}</a></li>
+      {% endfor %}
+    </ul>
+    <p><a class="btn btn--lg" href="{{ L.afterTraining.linkedinHref }}" target="_blank" rel="noopener">{{ L.afterTraining.linkedinLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a></p>
+    <p><a class="link-more" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ L.afterTraining.feedbackSubject }}">{{ L.afterTraining.feedbackLabel }} <span data-email-text>{{ email.user }} [at] {{ email.domain }}</span></a></p>
+  </div>
+</section>

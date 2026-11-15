@@ -248,13 +248,6 @@ const copy = {
       linkedinHref: LINKEDIN,
       feedbackLabel: "Tell me what you took away",
       feedbackSubject: "Training%20feedback",
-      materialsHeading: "Materials",
-      materials: [
-        {
-          label: "Questions that help build Ubiquitous Language (PDF, in Polish)",
-          href: "/materialy/ubiquitous-language-cheatsheet.pdf",
-        },
-      ],
     },
     postFooter: {
       bookLabel: "Book a call",
@@ -480,13 +473,6 @@ const copy = {
       linkedinHref: LINKEDIN,
       feedbackLabel: "Napisz, co zabierasz ze szkolenia",
       feedbackSubject: "Opinia%20po%20szkoleniu",
-      materialsHeading: "Materiały",
-      materials: [
-        {
-          label: "Pytania, które pomagają budować Ubiquitous Language (PDF)",
-          href: "/materialy/ubiquitous-language-cheatsheet.pdf",
-        },
-      ],
     },
     postFooter: {
       bookLabel: "Umów rozmowę",

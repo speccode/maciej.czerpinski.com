@@ -13,14 +13,6 @@ eleventyExcludeFromCollections: true
   <div class="wrap wrap--text prose">
     <h1>{{ L.afterTraining.h1 }}</h1>
     <p>{{ L.afterTraining.text }}</p>
-    {% if L.afterTraining.materials %}
-    <h2>{{ L.afterTraining.materialsHeading }}</h2>
-    <ul>
-      {% for m in L.afterTraining.materials %}
-      <li><a href="{{ m.href }}" download>{{ m.label }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
     <p><a class="btn btn--lg" href="{{ L.afterTraining.linkedinHref }}" target="_blank" rel="noopener">{{ L.afterTraining.linkedinLabel }}<span class="visually-hidden"> {{ L.common.newTabHint }}</span></a></p>
     <p><a class="link-more" href="#" data-email-user="{{ email.user }}" data-email-domain="{{ email.domain }}" data-email-subject="{{ L.afterTraining.feedbackSubject }}">{{ L.afterTraining.feedbackLabel }} <span data-email-text>{{ email.user }} [at] {{ email.domain }}</span></a></p>
   </div>

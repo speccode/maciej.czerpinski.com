@@ -434,6 +434,33 @@ check("markup: no </strong><span> adjacency (text must stay readable without CSS
   assert(!bad.length, `glued in ${bad.length} files, e.g. ${bad[0]}`);
 });
 
+// ---- Per-training after-training pages ----
+{
+  const require = (await import("node:module")).createRequire(import.meta.url);
+  const trainings = require(path.join(root, "site/_data/afterTrainings.js"));
+  check("after-training: generic pages have no materials list", () => {
+    for (const u of ["/after-training/", "/pl/po-szkoleniu/"]) assert(!read(u).includes("/materialy/"), `materials on ${u}`);
+  });
+  for (const t of trainings) {
+    const u = `/pl/po-szkoleniu/${t.slug}/`;
+    check(`after-training ${u}: noindex, own materials exist, LinkedIn`, () => {
+      const html = read(u);
+      assert(html.includes('<meta name="robots" content="noindex">'), "noindex");
+      assert(count(html, /<h1[ >]/g) === 1, "one h1");
+      assert(html.includes("https://www.linkedin.com/in/maciejczerpinski/"), "linkedin");
+      assert(t.materials.length > 0, "no materials");
+      for (const m of t.materials) {
+        assert(html.includes(`href="${m.href}"`), `link ${m.href}`);
+        assert(size(m.href) > 0, `file ${m.href}`);
+      }
+    });
+    check(`after-training ${u}: absent from sitemap, /po/${t.slug}/ alias`, () => {
+      assert(!read("/sitemap.xml").includes(u), "in sitemap");
+      assert(read(`/po/${t.slug}/`).includes(`url=${u}`), "alias target");
+    });
+  }
+}
+
 // ---- append later tasks above this line ----
 
 if (import.meta.url === `file://${process.argv[1]}`) {

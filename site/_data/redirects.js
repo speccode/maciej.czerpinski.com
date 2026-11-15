@@ -1,7 +1,11 @@
 // Legacy Gatsby URLs (pre 2026-07-28 migration) -> current URLs.
 // GitHub Pages has no server-side redirects, so each entry becomes a static
 // stub page (meta refresh + canonical) via site/redirects.njk.
+const afterTrainings = require("./afterTrainings.js");
+
 module.exports = [
+  // Short per-training aliases, e.g. /po/ddd/ -> /pl/po-szkoleniu/ddd/
+  ...afterTrainings.map((t) => ({ from: `/po/${t.slug}/`, to: `/pl/po-szkoleniu/${t.slug}/` })),
   { from: "/remote-event-storming/", to: "/blog/remote-event-storming/" },
   // Short alias for the QR code on the last training slide. Target is the PL page (participants are mostly Polish).
   { from: "/po/", to: "/pl/po-szkoleniu/" },
