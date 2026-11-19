@@ -13,10 +13,14 @@ const materials = {
     label: "Context Mapping: pytania, które pomagają wybrać wzorzec (PDF)",
     href: "/materialy/context-mapping-cheatsheet.pdf",
   },
+  "wt-cheatsheet": {
+    label: "Wzorce taktyczne: dziewięć klocków modelu (PDF)",
+    href: "/materialy/tactical-patterns-cheatsheet.pdf",
+  },
 };
 
 const trainings = [
-  { slug: "ddd", name: "Event Storming + DDD", materials: ["ul-cheatsheet", "bc-cheatsheet", "cm-cheatsheet"] },
+  { slug: "ddd", name: "Event Storming + DDD", materials: ["ul-cheatsheet", "bc-cheatsheet", "cm-cheatsheet", "wt-cheatsheet"] },
 ];
 
 module.exports = trainings.map((t) => ({
